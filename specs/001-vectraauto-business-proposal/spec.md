@@ -26,12 +26,12 @@ A prospective investor or lender opens the VectraAuto business proposal and can 
 
 **Why this priority**: The core deliverable is a complete, coherent proposal that can be used to secure funding or partnership. Without this, no other value is delivered.
 
-**Independent Test**: Review the document against the required section list and confirm that every mandatory section is present, internally consistent, and understandable to a non-technical reader.
+**Independent Test**: Read the executive summary and the S11 financial plan in isolation; confirm the six-question quickstart review passes. Full-section completeness is verified after US2–US4 against SC-001.
 
 **Acceptance Scenarios**:
 
 1. **Given** an investor who has never seen VectraAuto, **When** they read only the executive summary, **Then** they can state the business, target market, competition, operations, forecasts, and funding need.
-2. **Given** the full proposal, **When** it is checked against the standard business-plan contents, **Then** all required sections are present in the prescribed order.
+2. **Given** the completed proposal after US2–US4 (final gate), **When** it is checked against SC-001, **Then** all required sections are present in the prescribed order.
 3. **Given** the proposal, **When** a reader checks the financial section, **Then** all four required financial statements are described and their relationships are clear.
 
 ---
@@ -94,7 +94,7 @@ A reader can understand how VectraAuto will acquire customers and run operations
 ### Functional Requirements
 
 - **FR-001**: The document MUST include a title page containing the company logo placeholder, document title and business name, business address and contact information, completion date, and a confidentiality statement.
-- **FR-002**: The document MUST include an executive summary that is 5%–10% of the main document and follows the five-paragraph formula: business overview; target market, competition, and marketing strategy; operational highlights; one-year and two-year forecasts; and investment needs.
+- **FR-002**: The document MUST include an executive summary that is 5%–10% of the word count of sections S03–S12 (the main body excluding the executive summary itself) and follows the five-paragraph formula: business overview; target market, competition, and marketing strategy; operational highlights; one-year and two-year forecasts; and investment needs.
 - **FR-003**: The document MUST state a mission statement and a vision statement that define who VectraAuto serves, what it does, and the desired future state.
 - **FR-004**: The document MUST describe the business, including the problem it solves, its customers, a brief organizational introduction, current financial status, startup/established status, and legal form.
 - **FR-005**: The document MUST include an environmental analysis using the PEST framework, covering political, economic, social, and technological factors relevant to automobile-parts e-commerce.
@@ -132,7 +132,7 @@ A reader can understand how VectraAuto will acquire customers and run operations
 ### Measurable Outcomes
 
 - **SC-001**: The proposal contains all 11 required business-plan components (title page, executive summary, vision and mission, business description, environmental analysis, industry analysis, competitor analysis, market analysis, marketing plan, operational plan, and financial plan) plus the digital innovation analysis.
-- **SC-002**: The executive summary is between 5% and 10% of the main document length and contains all five prescribed paragraphs.
+- **SC-002**: The executive summary is between 5% and 10% of the S03–S12 word count and contains all five prescribed paragraphs.
 - **SC-003**: A reader can identify VectraAuto's business, target market, competition, operations, forecasts, and funding need from the executive summary alone in under 5 minutes.
 - **SC-004**: The financial section includes all four required statements and the balance sheet satisfies Assets = Liabilities + Equity.
 - **SC-005**: The digital innovation section addresses invention versus innovation, digital versus IT innovation, the strategy roadmap, types, and benefits, with zero required concepts missing.

@@ -86,6 +86,8 @@ Expected: the equation holds exactly for Year 1 and Year 2. Also confirm the cas
 - [ ] Unit tests pass
 - [ ] PDF and DOCX exist and open
 - [ ] Section parity confirmed across formats
+- [ ] TOC matches all S00–S14 headings
 - [ ] Executive summary passes the six-question review
+- [ ] Executive summary is 5%–10% of the S03–S12 word count
 - [ ] Balance sheet identity holds for both years
 - [ ] All open placeholders are listed in S13 with owners

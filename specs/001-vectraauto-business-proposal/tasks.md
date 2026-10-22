@@ -40,8 +40,8 @@
 **⚠️ CRITICAL**: No user story content can begin until this phase is complete
 
 - [ ] T004 Create `docs/business-proposal.md` skeleton with YAML front matter (title, author, date), title page heading, table-of-contents placeholder, and headings S00–S14 in the exact order defined in `specs/001-vectraauto-business-proposal/contracts/proposal-contract.md`
-- [ ] T005 [P] Implement the validator in `scripts/validate_proposal.py` to enforce invariants C-01–C-18 from `specs/001-vectraauto-business-proposal/contracts/proposal-contract.md` and print the report fields listed there
-- [ ] T006 [P] Create the structural test suite in `tests/test_proposal_structure.py` covering section presence/order, brand spelling, LKR currency, placeholder syntax, illustrative labeling, and the balance-sheet identity
+- [ ] T005 [P] Implement the validator in `scripts/validate_proposal.py` to enforce invariants C-01–C-19 from `specs/001-vectraauto-business-proposal/contracts/proposal-contract.md` and print the report fields listed there
+- [ ] T006 Create the structural test suite in `tests/test_proposal_structure.py` covering section presence/order, TOC parity, brand spelling, LKR currency, placeholder syntax, illustrative labeling, and the balance-sheet identity
 - [ ] T007 [P] Create `docs/assets/logo-placeholder.md` describing the required logo format, dimensions, and replacement instructions
 - [ ] T008 Populate S13 in `docs/business-proposal.md` with the assumptions register and `[PLACEHOLDER: description — owner: role]` template, and S14 with the initial glossary terms (VectraAuto, automobile parts, DIY car owners, independent repair garages)
 
@@ -112,7 +112,7 @@
 ### Implementation for User Story 4
 
 - [ ] T024 [US4] Write S09 marketing plan in `docs/business-proposal.md` with products/services and USP, LKR pricing strategy, sales and distribution, and advertising/promotions
-- [ ] T025 [US4] Write S10 operational plan in `docs/business-proposal.md` with Q1–Q4 activities, at least one measurable target per quarter, and the funding-linked milestones
+- [ ] T025 [US4] Write S10 operational plan in `docs/business-proposal.md` with Q1–Q4 activities, at least one measurable target per quarter, the hybrid inventory model (warehouse stock for high-turnover parts, drop-shipping for rare parts, B2C-first stocking priority), and the funding-linked milestones
 - [ ] T026 [US4] Run `python scripts/validate_proposal.py docs/business-proposal.md` and resolve all C-09, C-10, and S09–S10 failures
 
 **Checkpoint**: US4 independently explains go-to-market and first-year execution.
@@ -123,13 +123,14 @@
 
 **Purpose**: Reconcile the whole document and produce the three final formats
 
-- [ ] T027 Refresh S02 in `docs/business-proposal.md` so the executive summary reflects the final S05–S10 content without exceeding 5%–10% of the main body
+- [ ] T027 Refresh S02 in `docs/business-proposal.md` so the executive summary reflects the final S05–S10 content and stays within 5%–10% of the S03–S12 word count
 - [ ] T028 Complete S14 in `docs/business-proposal.md` with the final glossary and cited sources; confirm the only brand spelling is VectraAuto
 - [ ] T029 Review S13 in `docs/business-proposal.md`, resolve every placeholder possible, and list remaining open placeholders with owners
-- [ ] T030 Run `python scripts/validate_proposal.py docs/business-proposal.md` and `python -m unittest discover -s tests -p "test_*.py" -v`; fix all failures
-- [ ] T031 Export PDF and DOCX using the commands in `specs/001-vectraauto-business-proposal/quickstart.md` into `docs/exports/`
-- [ ] T032 Verify format parity between `docs/business-proposal.md`, `docs/exports/VectraAuto-Business-Proposal.pdf`, and `docs/exports/VectraAuto-Business-Proposal.docx`
-- [ ] T033 Perform the manual investor-readability and financial spot-check in `specs/001-vectraauto-business-proposal/quickstart.md`, then confirm all Definition of Done items
+- [ ] T030 Generate the table of contents in S01 of `docs/business-proposal.md` from the final S00–S14 headings, ensuring every heading appears with a matching title and order
+- [ ] T031 Run `python scripts/validate_proposal.py docs/business-proposal.md` and `python -m unittest discover -s tests -p "test_*.py" -v`; fix all failures
+- [ ] T032 Export PDF and DOCX using the commands in `specs/001-vectraauto-business-proposal/quickstart.md` into `docs/exports/`
+- [ ] T033 Verify format parity between `docs/business-proposal.md`, `docs/exports/VectraAuto-Business-Proposal.pdf`, and `docs/exports/VectraAuto-Business-Proposal.docx`
+- [ ] T034 Perform the manual investor-readability and financial spot-check in `specs/001-vectraauto-business-proposal/quickstart.md`, then confirm all Definition of Done items
 
 ---
 
@@ -144,7 +145,7 @@
 
 ### User Story Dependencies
 
-- **US1 (P1)**: Independent after Foundational; needs no other story to deliver its executive-summary and financial case
+- **US1 (P1)**: Independent after Foundational; its MVP slice is the executive summary and financial case. Full-section completeness is a cross-cutting gate checked by T031/T034, not a US1 dependency.
 - **US2 (P2)**: Independent after Foundational; adds S12 only
 - **US3 (P3)**: Independent after Foundational; adds S05–S08 only
 - **US4 (P4)**: Independent after Foundational; adds S09–S10 only
@@ -159,9 +160,9 @@
 ### Parallel Opportunities
 
 - T002 and T003 can run in parallel during setup
-- T005, T006, and T007 can run in parallel during Foundational (different files)
-- T031 export commands for PDF and DOCX can be run together after T030 passes
-- Content tasks (T009–T029) must remain sequential because they all modify `docs/business-proposal.md`
+- T005 and T007 can run in parallel during Foundational (different files); T006 follows T005 because it tests the validator
+- T032 export commands for PDF and DOCX can be run together after T031 passes
+- Content tasks (T009–T030) must remain sequential because they all modify `docs/business-proposal.md`
 
 ---
 
@@ -169,8 +170,10 @@
 
 ```text
 Task T005: Implement validator in scripts/validate_proposal.py
-Task T006: Create structural tests in tests/test_proposal_structure.py
 Task T007: Create logo placeholder guide in docs/assets/logo-placeholder.md
+
+# After T005 completes:
+Task T006: Create structural tests in tests/test_proposal_structure.py
 ```
 
 These touch separate files and can be completed concurrently.
