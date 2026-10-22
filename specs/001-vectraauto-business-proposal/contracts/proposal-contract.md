@@ -57,10 +57,10 @@ All sections are required. Numbering in the rendered document follows this order
 | Output | Path | Command shape |
 |--------|------|---------------|
 | Markdown | `docs/business-proposal.md` | Source of truth; committed |
-| PDF | `docs/exports/VectraAuto-Business-Proposal.pdf` | `pandoc docs/business-proposal.md --toc --pdf-engine=xelatex -o docs/exports/VectraAuto-Business-Proposal.pdf` |
-| DOCX | `docs/exports/VectraAuto-Business-Proposal.docx` | `pandoc docs/business-proposal.md --toc -o docs/exports/VectraAuto-Business-Proposal.docx` |
+| PDF | `docs/exports/VectraAuto-Business-Proposal.pdf` | `pandoc docs/business-proposal.md --pdf-engine=xelatex -o docs/exports/VectraAuto-Business-Proposal.pdf` |
+| DOCX | `docs/exports/VectraAuto-Business-Proposal.docx` | `pandoc docs/business-proposal.md -o docs/exports/VectraAuto-Business-Proposal.docx` |
 
-**Parity rule**: The PDF and DOCX must be generated from the same committed Markdown revision. An export is invalid if the source changed afterward.
+**Parity rule**: The PDF and DOCX must be generated from the same committed Markdown revision. An export is invalid if the source changed afterward. S01 is the single table of contents in all three formats; do not pass `--toc`, which would add a second, format-only contents page.
 
 ## Validator Interface
 

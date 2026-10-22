@@ -34,11 +34,11 @@ Expected result: all tests pass. Tests cover the contract's section list, brand 
 
 ```powershell
 New-Item -ItemType Directory -Force -Path docs\exports | Out-Null
-pandoc docs/business-proposal.md --toc --pdf-engine=xelatex -o docs/exports/VectraAuto-Business-Proposal.pdf
-pandoc docs/business-proposal.md --toc -o docs/exports/VectraAuto-Business-Proposal.docx
+pandoc docs/business-proposal.md --pdf-engine=xelatex -o docs/exports/VectraAuto-Business-Proposal.pdf
+pandoc docs/business-proposal.md -o docs/exports/VectraAuto-Business-Proposal.docx
 ```
 
-Expected result: both files exist and open without errors. The PDF should be roughly 15–25 pages; the DOCX should preserve headings and tables.
+Expected result: both files exist and open without errors. The PDF should be roughly 15–25 pages; the DOCX should preserve headings and tables. S01 is the single table of contents in every format; do not pass `--toc`.
 
 ## 4. Verify format parity
 
@@ -82,12 +82,12 @@ Expected: the equation holds exactly for Year 1 and Year 2. Also confirm the cas
 
 ## Definition of Done
 
-- [ ] Validator exits `0`
-- [ ] Unit tests pass
-- [ ] PDF and DOCX exist and open
-- [ ] Section parity confirmed across formats
-- [ ] TOC matches all S00–S14 headings
-- [ ] Executive summary passes the six-question review
-- [ ] Executive summary is 5%–10% of the S03–S12 word count
-- [ ] Balance sheet identity holds for both years
-- [ ] All open placeholders are listed in S13 with owners
+- [X] Validator exits `0`
+- [X] Unit tests pass
+- [X] PDF and DOCX exist and open
+- [X] Section parity confirmed across formats
+- [X] TOC matches all S00–S14 headings
+- [X] Executive summary passes the six-question review
+- [X] Executive summary is 5%–10% of the S03–S12 word count
+- [X] Balance sheet identity holds for both years
+- [X] All open placeholders are listed in S13 with owners

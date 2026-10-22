@@ -48,6 +48,11 @@ debug.log*
 .turbo
 .cache
 
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
 # IDE / editor
 .vscode/*
 !.vscode/extensions.json
