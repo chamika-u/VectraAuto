@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { AlertTriangle, ArrowRight, LockKeyhole, ShoppingBag } from "lucide-react";
 import { useCart } from "@/components/cart/cart-provider";
+import { CartEmpty } from "@/components/cart/cart-empty";
 import { CartLineItem } from "@/components/cart/cart-line-item";
 import { CartSummary } from "@/components/cart/cart-summary";
 import { EmptyState } from "@/components/catalog/empty-state";
