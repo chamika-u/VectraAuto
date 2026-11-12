@@ -143,6 +143,7 @@ ProductDetail {
 
 ## Caching and Security Notes
 
-- Catalog pages may be statically cached because the seed catalog changes only on deployment or reseeding.
+- Product content, categories, and fitment data may be cached because the seed catalog changes only on deployment or reseeding.
+- Inventory-dependent availability must be rendered from current runtime data or revalidated with a short lifetime; stale stock must not be cached indefinitely.
 - Compatibility for the selected vehicle is computed from the same prepared fitment data used by the server; no external fitment service is called.
 - No customer or card data appears in catalog URLs.

@@ -39,7 +39,8 @@ This contract covers order placement, idempotent retries, stock conflicts, and t
   "items": [
     {
       "productId": "prod_brake_pad_front",
-      "quantity": 2
+      "quantity": 2,
+      "expectedUnitPriceCents": 1250000
     }
   ],
   "payment": {
@@ -62,6 +63,7 @@ This contract covers order placement, idempotent retries, stock conflicts, and t
 | `items` | array | 1–50 items; unique by `productId` |
 | `items[].productId` | string | Required; active product |
 | `items[].quantity` | integer | Required; 1–99 and within current stock |
+| `items[].expectedUnitPriceCents` | integer | Optional; used to detect a price change before placing the order |
 | `payment.method` | `"cod"` \| `"simulated_card"` | Required |
 
 **Payment boundary**: The request never accepts card number, expiry, CVC, or any other card field. Simulated card fields are validated in the browser and are not transmitted. If a request contains unknown card-like fields, reject it with `400`.
@@ -168,9 +170,8 @@ Conflict reasons:
 | `OUT_OF_STOCK` | Product is no longer available |
 | `INSUFFICIENT_STOCK` | Requested quantity exceeds current stock |
 | `PRODUCT_UNAVAILABLE` | Product is inactive or missing |
-| `FITMENT_INCOMPATIBLE` | Selected vehicle does not fit; the visitor must explicitly resolve the warning |
 
-After a conflict, the client must refresh the cart via `/api/cart/validate`, show the affected items, and let the visitor retry. The visitor's cart and form details must be preserved.
+Fitment compatibility is a warning, not a hard conflict: an incompatible or unknown fitment is recorded in the order snapshot and surfaced to the visitor before checkout, but it does not block order placement unless the product is unavailable. After a price or stock conflict, the client must refresh the cart via `/api/cart/validate`, show the affected items, and let the visitor retry. The visitor's cart and form details must be preserved.
 
 ## Error Response — `500 Internal Server Error`
 
@@ -195,6 +196,7 @@ No order is considered placed unless the server returns `200` or `201` with an o
 6. Customer and order data expire 30 days after placement.
 7. No card data is accepted, stored, logged, or returned.
 8. The endpoint does not provide order lookup, order history, cancellation, refunds, or fulfillment actions.
+9. No application-level rate limiting is included in the MVP; if the storefront is exposed publicly, apply host or reverse-proxy rate limits to the order and validation endpoints.
 
 ## Confirmation Page Contract
 

@@ -18,6 +18,10 @@ Build a showcase-ready VectraAuto storefront that lets a guest shopper discover 
 
 **Testing**: Vitest + React Testing Library for unit and component tests; Playwright for end-to-end journeys; `@axe-core/playwright` for accessibility checks; store and contract tests run against a temporary JSON store.
 
+**Observability**: Structured server logs for order outcomes, store write failures, and retention purge results; no PII or card data in logs, and no metrics or tracing stack in the MVP.
+
+**Reliability**: Single-instance restart recovers from the persisted runtime store; no high-availability or automatic failover in the MVP.
+
 **Target Platform**: Modern evergreen browsers on desktop and mobile; Node.js 22 single-instance server or container with a persistent disk.
 
 **Project Type**: Full-stack web application (Next.js App Router with server-only modules and route handlers)
@@ -155,6 +159,7 @@ All technical unknowns are resolved in [research.md](./research.md). Key decisio
 
 - **File-store concurrency**: Use an in-process mutex, atomic temp-file writes, and revalidation inside the lock; document single-instance deployment.
 - **Serverless incompatibility**: Do not target Vercel-style ephemeral/serverless storage for the MVP; use a persistent-disk Node host.
+- **Browser storage unavailable**: Fall back to an in-memory cart for the current session and clearly explain that the cart cannot be remembered.
 - **Fitment data quality**: Validate seed fitment ranges at startup and in tests; show `unknown` instead of guessing.
 - **Simulated card leakage**: Validate test card fields in the browser, never send card values to the server, and log only the payment method.
 - **Duplicate orders**: Require a client-generated idempotency key and return the existing order for repeats.

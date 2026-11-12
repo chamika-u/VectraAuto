@@ -117,7 +117,7 @@ Initial quantity comes from the catalog seed. Inventory is decremented only afte
 
 ### Cart (client-side only)
 
-The cart is not stored on the server. It is persisted in `localStorage` for the same browser and revalidated before checkout.
+The cart is not stored on the server. It is persisted in `localStorage` for the same browser and revalidated before checkout. If browser storage is unavailable, the cart remains in memory for the current session and the UI explains that it cannot be remembered.
 
 | Field | Type | Rules |
 |-------|------|-------|
