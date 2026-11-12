@@ -78,7 +78,7 @@ Unknown fields are rejected. Card data is never accepted by this endpoint.
 | `items[].priceChanged` | boolean | True when the current server price differs from `expectedUnitPriceCents` |
 | `items[].compatibility` | `"compatible"` \| `"incompatible"` \| `"unknown"` \| null | Result for the supplied vehicle, or null when no vehicle is supplied |
 | `warnings` | Warning[] | Visitor-actionable messages |
-| `canCheckout` | boolean | True only when every item is available, within stock, and has no blocking warning |
+| `canCheckout` | boolean | True only when every item is available and within stock; fitment warnings are informational and do not block checkout |
 
 **Warning**
 
@@ -98,8 +98,8 @@ Warning codes:
 | `OUT_OF_STOCK` | Product is no longer available |
 | `INSUFFICIENT_STOCK` | Requested quantity exceeds available stock |
 | `PRODUCT_UNAVAILABLE` | Product is inactive or missing |
-| `FITMENT_INCOMPATIBLE` | Selected vehicle is incompatible; the visitor must confirm before ordering |
-| `FITMENT_UNKNOWN` | Fitment cannot be verified for the selected vehicle |
+| `FITMENT_INCOMPATIBLE` | Selected vehicle is incompatible; show a clear warning and allow the visitor to decide |
+| `FITMENT_UNKNOWN` | Fitment cannot be verified for the selected vehicle; show an explicit unknown result |
 
 ## Error Response — `400 Bad Request`
 

@@ -113,9 +113,6 @@ tests/
 ├── unit/                 # Money, validation, fitment, retention
 ├── integration/          # Store, API route handlers, order transaction
 └── e2e/                  # Playwright browse-to-buy journeys
-
-e2e/
-└── flows/                # Playwright specs and fixtures (if separated from tests/)
 ```
 
 **Structure Decision**: A single Next.js application keeps the storefront, server handlers, and shared validation in one deployable unit. Server-only modules under `src/server` prevent file-store access from leaking into client bundles, while shared Zod contracts under `src/lib/contracts` keep request and response shapes aligned between UI and route handlers. The runtime JSON store is excluded from source control; the catalog seed is versioned.
