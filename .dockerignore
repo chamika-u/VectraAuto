@@ -1,0 +1,10 @@
+node_modules
+.next
+.git
+.gitignore
+coverage
+playwright-report
+test-results
+*.log*
+.env*
+data/runtime.store.json

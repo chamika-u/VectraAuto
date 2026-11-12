@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Suspension components illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#241d2f"/>
+      <stop offset="1" stop-color="#3d3354"/>
+    </linearGradient>
+    <linearGradient id="spring" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffbe55"/>
+      <stop offset="1" stop-color="#d98b2b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <g transform="translate(400 300)">
+    <rect x="-16" y="-212" width="32" height="424" rx="16" fill="#8b95ad"/>
+    <path d="M-104-190c58-30 150-30 208 0M-104-140c58-30 150-30 208 0M-104-90c58-30 150-30 208 0M-104-40c58-30 150-30 208 0M-104 10c58-30 150-30 208 0M-104 60c58-30 150-30 208 0M-104 110c58-30 150-30 208 0M-104 160c58-30 150-30 208 0" fill="none" stroke="url(#spring)" stroke-width="22" stroke-linecap="round"/>
+    <rect x="-38" y="-230" width="76" height="34" rx="14" fill="#aeb7cb"/>
+    <rect x="-38" y="196" width="76" height="34" rx="14" fill="#aeb7cb"/>
+    <circle cx="0" cy="-248" r="17" fill="#e1e7f2"/>
+    <circle cx="0" cy="230" r="17" fill="#e1e7f2"/>
+  </g>
+  <text x="56" y="540" fill="#f7f9fb" font-family="Arial, sans-serif" font-size="34" font-weight="700">SUSPENSION</text>
+  <text x="56" y="570" fill="#bdb0d6" font-family="Arial, sans-serif" font-size="18">Comfort and control, balanced</text>
+</svg>
