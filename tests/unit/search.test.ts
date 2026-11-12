@@ -44,3 +44,4 @@ describe("search matcher", () => {
     expect(productMatchesQuery(sampleProduct, "spark plug")).toBe(false);
   });
 });
+

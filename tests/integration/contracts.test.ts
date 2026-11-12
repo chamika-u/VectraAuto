@@ -77,3 +77,4 @@ describe("data contract validation schemas", () => {
     expect(parsed.success).toBe(false);
   });
 });
+

@@ -79,3 +79,4 @@ describe("fitment resolver", () => {
     expect(resolved?.vehicleId).toBe(sampleVehicle.id);
   });
 });
+
