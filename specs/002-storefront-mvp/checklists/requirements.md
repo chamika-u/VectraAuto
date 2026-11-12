@@ -31,7 +31,7 @@
 
 ## Notes
 
-- Validation passed on the first review; no specification updates were required.
+- Validation passed on the first review; analysis remediation later added explicit WCAG 2.1 AA and 44x44 CSS pixel thresholds plus measurable performance and usability validation coverage.
 - Requirements and success criteria are written in technology-agnostic, user-facing terms.
 - The user-supplied JavaScript/TypeScript and lightweight-data constraints are recorded only in the Assumptions section as delivery constraints; they do not appear in functional requirements or success criteria.
 - Scope boundaries are explicit: product administration, customer accounts, real payments, transactional messaging, complex logistics, and heavy relational database infrastructure are out of scope for the showcase MVP.

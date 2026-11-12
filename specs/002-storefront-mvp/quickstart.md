@@ -191,11 +191,12 @@ No real charge is made. Card values must never appear in a server request, appli
 **Expected**:
 
 - No horizontal scrolling; all primary actions are reachable.
+- Primary touch targets are at least 44x44 CSS pixels.
 - Focus order is logical and focus is always visible.
 - The cart drawer traps focus appropriately, closes with Escape, and returns focus to its trigger.
 - Non-essential motion is minimized or removed under reduced motion.
 - Content transitions never block input and complete within 500ms.
-- No critical or serious accessibility violations are reported by the automated check.
+- No critical or serious WCAG 2.1 AA accessibility violations are reported by the automated check.
 
 ### 10. Performance and Image Fallbacks
 
@@ -205,10 +206,25 @@ No real charge is made. Card values must never appear in a server request, appli
 
 **Expected**:
 
-- Primary content appears within the performance target on a typical connection.
+- Automated checks confirm LCP is at or below 2.5 seconds and CLS is at or below 0.1 for representative catalog and product views at mobile and desktop profiles.
 - Missing images show a placeholder and preserve layout.
 - Cart and quantity interactions remain responsive.
 - No layout shift blocks the primary action.
+
+### 11. Discovery, Checkout, and Usability Timing
+
+1. Time a first-time-style run from landing to opening a specific product through category, search, or fitment.
+2. Time a complete run from product discovery to order confirmation.
+3. Run the automated journey timing checks for the representative flows.
+4. Run the moderated usability session with 5 first-time participants and record completion and task times.
+
+**Expected**:
+
+- Discovery to product detail completes in under 60 seconds for the timed representative flow.
+- Discovery to order confirmation completes in under 3 minutes for the timed representative flow.
+- A vehicle selection to compatible product completes in under 60 seconds.
+- At least 4 of 5 first-time participants complete a purchase without assistance.
+- Evidence is recorded in `docs/validation-evidence.md` and `docs/usability-validation.md`.
 
 ## Automated Validation
 
@@ -224,8 +240,10 @@ Expected results:
 
 - Lint and typecheck pass with no errors.
 - Unit and integration tests cover money formatting, cart validation, fitment resolution, stock transaction, idempotency, and retention.
-- E2E tests cover catalog, fitment, cart persistence, COD checkout, simulated card checkout, duplicate submission, and responsive/keyboard journeys.
-- Accessibility checks report no critical or serious violations on primary flows.
+- E2E tests cover catalog, fitment, cart persistence, COD checkout, simulated card checkout, duplicate submission, responsive/keyboard journeys, LCP/CLS performance thresholds, and journey timing.
+- Accessibility checks report no critical or serious WCAG 2.1 AA violations on primary flows and confirm 44x44 CSS pixel primary touch targets.
+- Performance checks report LCP at or below 2.5 seconds and CLS at or below 0.1 for representative catalog and product views.
+- Moderated usability validation records at least 4 of 5 first-time participants completing a purchase without assistance.
 
 ## Definition of Done Checklist
 
@@ -237,5 +255,7 @@ Expected results:
 - [ ] Duplicate requests do not create duplicate orders.
 - [ ] Stock decrements exactly once and never becomes negative.
 - [ ] Orders older than 30 days are deleted or anonymized.
-- [ ] Primary flows work at 360px and 1440px, by keyboard, and with reduced motion.
-- [ ] Lint, typecheck, unit, integration, E2E, and accessibility checks pass.
+- [ ] Primary flows work at 360px and 1440px, by keyboard, and with reduced motion, with 44x44 CSS pixel primary touch targets and no critical or serious WCAG 2.1 AA violations.
+- [ ] Representative catalog and product views meet LCP ≤ 2.5s and CLS ≤ 0.1 in automated performance checks.
+- [ ] Discovery, fitment-to-product, and checkout timing goals pass, and at least 4 of 5 first-time usability participants complete a purchase without assistance.
+- [ ] Lint, typecheck, unit, integration, E2E, performance, accessibility, and usability validation checks pass.

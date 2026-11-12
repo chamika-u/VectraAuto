@@ -142,8 +142,8 @@ A visitor experiences a polished, responsive storefront with purposeful motion: 
 - **FR-018**: The system MUST preserve the cart and any entered checkout details when submission fails, and MUST allow the visitor to retry.
 - **FR-019**: The storefront MUST use a consistent motion system for page transitions, content reveals, cart interactions, image transitions, and hover or tap feedback, without blocking input.
 - **FR-020**: The storefront MUST respect the visitor's reduced-motion preference by minimizing or removing non-essential animation while preserving clear state feedback.
-- **FR-021**: The storefront MUST be responsive from small mobile screens through desktop, without horizontal scrolling or unreachable primary actions.
-- **FR-022**: The storefront MUST support keyboard-only navigation with logical focus order, visible focus states, meaningful labels, alternative text for images, and sufficient color contrast.
+- **FR-021**: The storefront MUST be responsive from 360px to 1440px screen widths, without horizontal scrolling or unreachable primary actions, and primary touch targets MUST be at least 44x44 CSS pixels.
+- **FR-022**: The storefront MUST support keyboard-only navigation with logical focus order, visible focus states, meaningful labels, alternative text for images, and color contrast meeting WCAG 2.1 AA (at least 4.5:1 for normal text and 3:1 for large text and UI components).
 - **FR-023**: The system MUST provide friendly, actionable messages for invalid product links, empty search results, unavailable products, failed images, validation errors, and failed submissions.
 - **FR-024**: The system MUST display prices, delivery fees, and totals in Sri Lankan rupees using a consistent LKR format across all shopping views.
 - **FR-025**: The system MUST show accurate cart and order totals at all times, where the grand total equals the sum of line totals plus the delivery fee.
@@ -196,8 +196,8 @@ A visitor experiences a polished, responsive storefront with purposeful motion: 
 - **SC-005**: 100% of checkout attempts with missing or invalid required details are blocked with a specific field-level message.
 - **SC-006**: 100% of successful orders display a unique reference and are recorded, with the cart cleared and no duplicate order created by refresh or resubmission.
 - **SC-007**: A cart is retained for at least 7 days in the same browser across reloads and return visits, with any unavailable item clearly flagged on return.
-- **SC-008**: All primary shopping flows are usable from 360px to 1440px screen widths with no horizontal scrolling and no unreachable actions.
-- **SC-009**: A keyboard-only visitor can complete the full browse, cart, and checkout journey with visible focus at every step.
+- **SC-008**: All primary shopping flows are usable from 360px to 1440px screen widths with no horizontal scrolling, no unreachable actions, and primary touch targets of at least 44x44 CSS pixels.
+- **SC-009**: A keyboard-only visitor can complete the full browse, cart, and checkout journey with visible focus at every step and no critical or serious WCAG 2.1 AA accessibility violations.
 - **SC-010**: Motion transitions complete within 0.5 seconds, never block input, and honor the reduced-motion preference on 100% of animated elements.
 - **SC-011**: The showcase catalog contains at least 20 products across at least 3 categories, and all catalog links and product images resolve or show intentional fallbacks.
 - **SC-012**: In moderated usability testing with 5 first-time users, at least 4 can complete a purchase without assistance.

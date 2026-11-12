@@ -16,7 +16,7 @@ Build a showcase-ready VectraAuto storefront that lets a guest shopper discover 
 
 **Storage**: Typed JSON document store under `data/` with atomic temp-file writes and an in-process write mutex. Read-only catalog seed plus a mutable runtime store for inventory, orders, and idempotency records. No external database server and no heavy SQL.
 
-**Testing**: Vitest + React Testing Library for unit and component tests; Playwright for end-to-end journeys; `@axe-core/playwright` for accessibility checks; store and contract tests run against a temporary JSON store.
+**Testing**: Vitest + React Testing Library for unit and component tests; Playwright for end-to-end journeys, LCP/CLS performance checks, and journey timing instrumentation; `@axe-core/playwright` for accessibility checks; store and contract tests run against a temporary JSON store. Moderated usability validation with 5 first-time participants records SC-012 outcomes.
 
 **Observability**: Structured server logs for order outcomes, store write failures, and retention purge results; no PII or card data in logs, and no metrics or tracing stack in the MVP.
 
@@ -171,7 +171,8 @@ All technical unknowns are resolved in [research.md](./research.md). Key decisio
 
 - All spec user stories and acceptance scenarios pass in automated or documented manual tests.
 - The seeded catalog, fitment finder, cart, COD checkout, simulated card checkout, order confirmation, and stock decrement work end-to-end.
-- Typecheck, lint, unit, integration, E2E, and accessibility checks pass.
-- The primary flow works at 360px and 1440px widths, by keyboard only, and with reduced motion enabled.
+- Typecheck, lint, unit, integration, E2E, performance, and accessibility checks pass.
+- The primary flow works at 360px and 1440px widths, by keyboard only, and with reduced motion enabled, with 44x44 CSS pixel primary touch targets and no critical or serious WCAG 2.1 AA violations.
+- Representative catalog and product views meet LCP ≤ 2.5s and CLS ≤ 0.1, and moderated usability validation records SC-001, SC-002, and SC-012 results.
 - Orders older than 30 days are purged or anonymized, and duplicate submissions do not create duplicate orders.
 - The quickstart guide can be followed from a clean checkout to a confirmed order.
