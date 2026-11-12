@@ -1,0 +1,1300 @@
+{
+  "schemaVersion": 1,
+  "currency": "LKR",
+  "deliveryFeeCents": 50000,
+  "retentionDays": 30,
+  "categories": [
+    {
+      "id": "cat_brakes",
+      "slug": "brakes",
+      "name": "Brakes",
+      "description": "Pads, discs, shoes, fluids, and sensors for confident stopping.",
+      "imagePath": "/products/brakes.svg",
+      "sortOrder": 1
+    },
+    {
+      "id": "cat_filters",
+      "slug": "filters",
+      "name": "Filters",
+      "description": "Oil, air, cabin, fuel, and transmission filters for cleaner running.",
+      "imagePath": "/products/filters.svg",
+      "sortOrder": 2
+    },
+    {
+      "id": "cat_lighting",
+      "slug": "lighting",
+      "name": "Lighting",
+      "description": "Headlights, fog lamps, tail lights, and bulbs for every drive.",
+      "imagePath": "/products/lighting.svg",
+      "sortOrder": 3
+    },
+    {
+      "id": "cat_suspension",
+      "slug": "suspension",
+      "name": "Suspension & Steering",
+      "description": "Shocks, springs, joints, and bearings for a composed ride.",
+      "imagePath": "/products/suspension.svg",
+      "sortOrder": 4
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_brake_pad_front",
+      "sku": "VA-BRK-001",
+      "partNumber": "04465-0D040",
+      "slug": "front-brake-pad-set",
+      "name": "Front Brake Pad Set",
+      "categoryId": "cat_brakes",
+      "priceCents": 1250000,
+      "initialStock": 18,
+      "isFeatured": true,
+      "shortDescription": "Low-dust ceramic front pads with dependable cold and hot stopping power.",
+      "description": "A balanced ceramic front brake pad set engineered for Sri Lankan city driving. The chamfered friction material runs quietly, limits dust, and keeps pedal feel consistent in stop-and-go traffic.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Front axle"
+        },
+        {
+          "label": "Material",
+          "value": "Ceramic composite"
+        },
+        {
+          "label": "Includes",
+          "value": "4 pads, shims, fitting hardware"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, and Suzuki models, 2018–2019.",
+      "images": [
+        {
+          "path": "/products/brakes.svg",
+          "alt": "Front Brake Pad Set product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_brake_shoe_rear",
+      "sku": "VA-BRK-002",
+      "partNumber": "04495-52140",
+      "slug": "rear-brake-shoe-set",
+      "name": "Rear Brake Shoe Set",
+      "categoryId": "cat_brakes",
+      "priceCents": 850000,
+      "initialStock": 12,
+      "shortDescription": "Durable rear shoes with smooth engagement and long service life.",
+      "description": "Rear drum brake shoes with heat-stable lining and precise arc fit. Designed for compact hatchbacks used on varied road surfaces.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Rear axle"
+        },
+        {
+          "label": "Material",
+          "value": "Semi-metallic lining"
+        },
+        {
+          "label": "Includes",
+          "value": "4 shoes, springs, retainers"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota and Suzuki hatchbacks.",
+      "images": [
+        {
+          "path": "/products/brakes.svg",
+          "alt": "Rear Brake Shoe Set product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_brake_fluid_dot4",
+      "sku": "VA-BRK-003",
+      "partNumber": "DOT4-500ML",
+      "slug": "dot-4-brake-fluid",
+      "name": "DOT 4 Brake Fluid 500ml",
+      "categoryId": "cat_brakes",
+      "priceCents": 320000,
+      "initialStock": 30,
+      "shortDescription": "High boiling point DOT 4 fluid for responsive hydraulic braking.",
+      "description": "A sealed 500ml bottle of DOT 4 brake fluid with stable viscosity and corrosion protection for everyday passenger vehicles.",
+      "specifications": [
+        {
+          "label": "Standard",
+          "value": "DOT 4"
+        },
+        {
+          "label": "Volume",
+          "value": "500ml"
+        },
+        {
+          "label": "Dry boiling point",
+          "value": "260°C minimum"
+        }
+      ],
+      "fitmentSummary": "Prepared fitment data is not yet available for this universal fluid.",
+      "images": [
+        {
+          "path": "/products/brakes.svg",
+          "alt": "DOT 4 Brake Fluid 500ml product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_brake_disc_front",
+      "sku": "VA-BRK-004",
+      "partNumber": "43512-0D180",
+      "slug": "front-brake-disc-pair",
+      "name": "Front Brake Disc Pair",
+      "categoryId": "cat_brakes",
+      "priceCents": 2450000,
+      "initialStock": 9,
+      "shortDescription": "Vented front rotors with balanced cooling and quiet operation.",
+      "description": "A matched pair of vented front brake discs with corrosion-resistant coating and tight runout tolerances for smooth braking.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Front axle"
+        },
+        {
+          "label": "Type",
+          "value": "Vented"
+        },
+        {
+          "label": "Quantity",
+          "value": "2 discs"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, and Suzuki models.",
+      "images": [
+        {
+          "path": "/products/brakes.svg",
+          "alt": "Front Brake Disc Pair product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_abs_sensor_front",
+      "sku": "VA-BRK-005",
+      "partNumber": "89542-52010",
+      "slug": "front-abs-wheel-sensor",
+      "name": "Front ABS Wheel Sensor",
+      "categoryId": "cat_brakes",
+      "priceCents": 1850000,
+      "initialStock": 7,
+      "shortDescription": "Direct-fit ABS sensor for stable traction and braking signals.",
+      "description": "A sealed ABS wheel speed sensor with a flexible harness and weatherproof connector, designed to restore reliable wheel speed readings.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Front left or right"
+        },
+        {
+          "label": "Connector",
+          "value": "OEM-style sealed plug"
+        },
+        {
+          "label": "Cable length",
+          "value": "820mm"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota and Honda hybrid models.",
+      "images": [
+        {
+          "path": "/products/brakes.svg",
+          "alt": "Front ABS Wheel Sensor product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_oil_filter",
+      "sku": "VA-FLT-001",
+      "partNumber": "90915-YZZD4",
+      "slug": "premium-oil-filter",
+      "name": "Premium Oil Filter",
+      "categoryId": "cat_filters",
+      "priceCents": 245000,
+      "initialStock": 40,
+      "isFeatured": true,
+      "shortDescription": "High-efficiency oil filter with a strong anti-drainback valve.",
+      "description": "A spin-on oil filter with multi-pass media and a reinforced canister for consistent oil pressure and engine protection.",
+      "specifications": [
+        {
+          "label": "Thread",
+          "value": "3/4-16 UNF"
+        },
+        {
+          "label": "Bypass",
+          "value": "Integrated"
+        },
+        {
+          "label": "Media",
+          "value": "Synthetic blend"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota and Honda models.",
+      "images": [
+        {
+          "path": "/products/filters.svg",
+          "alt": "Premium Oil Filter product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_air_filter",
+      "sku": "VA-FLT-002",
+      "partNumber": "17801-21050",
+      "slug": "engine-air-filter",
+      "name": "Engine Air Filter",
+      "categoryId": "cat_filters",
+      "priceCents": 385000,
+      "initialStock": 26,
+      "shortDescription": "Deep-pleat panel filter for clean intake air and steady airflow.",
+      "description": "A precision-fit panel air filter with high dust capacity and low restriction, suitable for dusty urban and suburban routes.",
+      "specifications": [
+        {
+          "label": "Type",
+          "value": "Panel"
+        },
+        {
+          "label": "Media",
+          "value": "Resin-impregnated paper"
+        },
+        {
+          "label": "Seal",
+          "value": "Molded polyurethane"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, and Suzuki models.",
+      "images": [
+        {
+          "path": "/products/filters.svg",
+          "alt": "Engine Air Filter product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_cabin_filter",
+      "sku": "VA-FLT-003",
+      "partNumber": "87139-47010",
+      "slug": "cabin-air-filter",
+      "name": "Cabin Air Filter",
+      "categoryId": "cat_filters",
+      "priceCents": 450000,
+      "initialStock": 22,
+      "isFeatured": true,
+      "shortDescription": "Activated-carbon cabin filter for a fresher, cleaner interior.",
+      "description": "A layered cabin filter that captures dust and pollen while reducing common odours with an activated-carbon layer.",
+      "specifications": [
+        {
+          "label": "Type",
+          "value": "Activated carbon"
+        },
+        {
+          "label": "Fitment",
+          "value": "Behind glovebox"
+        },
+        {
+          "label": "Layers",
+          "value": "3-stage filtration"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, Nissan, and Hyundai models.",
+      "images": [
+        {
+          "path": "/products/filters.svg",
+          "alt": "Cabin Air Filter product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_fuel_filter",
+      "sku": "VA-FLT-004",
+      "partNumber": "23390-0L041",
+      "slug": "diesel-fuel-filter",
+      "name": "Diesel Fuel Filter",
+      "categoryId": "cat_filters",
+      "priceCents": 675000,
+      "initialStock": 16,
+      "shortDescription": "Water-separating fuel filter for dependable diesel delivery.",
+      "description": "A high-capacity diesel fuel filter with water separation and a reinforced housing for consistent fuel flow.",
+      "specifications": [
+        {
+          "label": "Fuel",
+          "value": "Diesel"
+        },
+        {
+          "label": "Water separation",
+          "value": "Yes"
+        },
+        {
+          "label": "Housing",
+          "value": "Steel"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Mitsubishi, and Kia diesel models.",
+      "images": [
+        {
+          "path": "/products/filters.svg",
+          "alt": "Diesel Fuel Filter product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_transmission_filter",
+      "sku": "VA-FLT-005",
+      "partNumber": "35330-0W010",
+      "slug": "transmission-filter-kit",
+      "name": "Transmission Filter Kit",
+      "categoryId": "cat_filters",
+      "priceCents": 1100000,
+      "initialStock": 10,
+      "shortDescription": "Filter and gasket kit for smooth automatic transmission service.",
+      "description": "A transmission service kit with a fine-mesh filter, gasket, and hardware for clean fluid flow and reliable shifting.",
+      "specifications": [
+        {
+          "label": "Type",
+          "value": "Automatic transmission"
+        },
+        {
+          "label": "Includes",
+          "value": "Filter, gasket, bolts"
+        },
+        {
+          "label": "Media",
+          "value": "Fine mesh"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, and Nissan models.",
+      "images": [
+        {
+          "path": "/products/filters.svg",
+          "alt": "Transmission Filter Kit product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_led_headlight_h4",
+      "sku": "VA-LGT-001",
+      "partNumber": "H4-LED-6000K",
+      "slug": "h4-led-headlight-bulb-pair",
+      "name": "H4 LED Headlight Bulb Pair",
+      "categoryId": "cat_lighting",
+      "priceCents": 895000,
+      "initialStock": 24,
+      "isFeatured": true,
+      "shortDescription": "Bright 6000K H4 LED bulbs with a compact, easy-fit body.",
+      "description": "A pair of H4 LED headlight bulbs with focused beam alignment, quiet cooling, and a plug-and-play connector for selected halogen housings.",
+      "specifications": [
+        {
+          "label": "Socket",
+          "value": "H4"
+        },
+        {
+          "label": "Colour temperature",
+          "value": "6000K"
+        },
+        {
+          "label": "Quantity",
+          "value": "2 bulbs"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, and Suzuki models.",
+      "images": [
+        {
+          "path": "/products/lighting.svg",
+          "alt": "H4 LED Headlight Bulb Pair product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_fog_lamp",
+      "sku": "VA-LGT-002",
+      "partNumber": "81210-0D040",
+      "slug": "front-fog-lamp-kit",
+      "name": "Front Fog Lamp Kit",
+      "categoryId": "cat_lighting",
+      "priceCents": 1275000,
+      "initialStock": 11,
+      "shortDescription": "Weather-sealed fog lamps for clearer visibility in heavy rain.",
+      "description": "A front fog lamp kit with impact-resistant lenses, sealed housings, and a complete wiring harness for a clean installation.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Front"
+        },
+        {
+          "label": "Lens",
+          "value": "Clear polycarbonate"
+        },
+        {
+          "label": "Includes",
+          "value": "2 lamps, harness, switch"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, and Suzuki models.",
+      "images": [
+        {
+          "path": "/products/lighting.svg",
+          "alt": "Front Fog Lamp Kit product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_tail_light",
+      "sku": "VA-LGT-003",
+      "partNumber": "81560-0D200",
+      "slug": "rear-tail-light-assembly",
+      "name": "Rear Tail Light Assembly",
+      "categoryId": "cat_lighting",
+      "priceCents": 1750000,
+      "initialStock": 8,
+      "shortDescription": "Direct-fit tail light with a UV-stable lens and sealed housing.",
+      "description": "A rear tail light assembly with OEM-style mounting points, bright reflector optics, and a weather-sealed housing.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Rear left or right"
+        },
+        {
+          "label": "Lens",
+          "value": "UV-stable red"
+        },
+        {
+          "label": "Mounting",
+          "value": "Direct fit"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, and Suzuki hatchbacks.",
+      "images": [
+        {
+          "path": "/products/lighting.svg",
+          "alt": "Rear Tail Light Assembly product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_headlight_assembly",
+      "sku": "VA-LGT-004",
+      "partNumber": "81110-47120",
+      "slug": "headlight-assembly",
+      "name": "Headlight Assembly",
+      "categoryId": "cat_lighting",
+      "priceCents": 4250000,
+      "initialStock": 5,
+      "shortDescription": "Complete headlight assembly with clear lens and precise beam pattern.",
+      "description": "A complete headlight assembly with a clear lens, sealed reflector, and durable mounting tabs for a clean front-end restoration.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Front left or right"
+        },
+        {
+          "label": "Lens",
+          "value": "Clear"
+        },
+        {
+          "label": "Bulb type",
+          "value": "Halogen"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, and Mazda models.",
+      "images": [
+        {
+          "path": "/products/lighting.svg",
+          "alt": "Headlight Assembly product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_indicator_bulb",
+      "sku": "VA-LGT-005",
+      "partNumber": "T20-AMBER",
+      "slug": "universal-led-indicator-bulb",
+      "name": "Universal LED Indicator Bulb",
+      "categoryId": "cat_lighting",
+      "priceCents": 125000,
+      "initialStock": 50,
+      "shortDescription": "Amber T20 LED indicator bulb with a bright, even glow.",
+      "description": "A single amber T20 LED indicator bulb with a compact body and long service life. Fitment data is not yet available for every vehicle.",
+      "specifications": [
+        {
+          "label": "Socket",
+          "value": "T20"
+        },
+        {
+          "label": "Colour",
+          "value": "Amber"
+        },
+        {
+          "label": "Quantity",
+          "value": "1 bulb"
+        }
+      ],
+      "fitmentSummary": "Prepared fitment data is not yet available for this universal bulb.",
+      "images": [
+        {
+          "path": "/products/lighting.svg",
+          "alt": "Universal LED Indicator Bulb product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_shock_absorber_front",
+      "sku": "VA-SUS-001",
+      "partNumber": "48510-0D190",
+      "slug": "front-shock-absorber",
+      "name": "Front Shock Absorber",
+      "categoryId": "cat_suspension",
+      "priceCents": 3450000,
+      "initialStock": 14,
+      "isFeatured": true,
+      "shortDescription": "Gas-charged front shock for a controlled, comfortable ride.",
+      "description": "A gas-charged front shock absorber with precision valving and a corrosion-resistant rod for composed handling over uneven roads.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Front"
+        },
+        {
+          "label": "Type",
+          "value": "Gas-charged"
+        },
+        {
+          "label": "Quantity",
+          "value": "1 shock"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, Suzuki, and Mazda models.",
+      "images": [
+        {
+          "path": "/products/suspension.svg",
+          "alt": "Front Shock Absorber product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_coil_spring",
+      "sku": "VA-SUS-002",
+      "partNumber": "48131-52130",
+      "slug": "front-coil-spring-pair",
+      "name": "Front Coil Spring Pair",
+      "categoryId": "cat_suspension",
+      "priceCents": 2850000,
+      "initialStock": 9,
+      "shortDescription": "Matched coil spring pair for stable ride height and balance.",
+      "description": "A matched pair of front coil springs with durable coating and consistent spring rates for everyday passenger vehicles.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Front"
+        },
+        {
+          "label": "Quantity",
+          "value": "2 springs"
+        },
+        {
+          "label": "Finish",
+          "value": "Powder-coated"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota and Honda hybrid models.",
+      "images": [
+        {
+          "path": "/products/suspension.svg",
+          "alt": "Front Coil Spring Pair product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_tie_rod_end",
+      "sku": "VA-SUS-003",
+      "partNumber": "45046-09650",
+      "slug": "outer-tie-rod-end",
+      "name": "Outer Tie Rod End",
+      "categoryId": "cat_suspension",
+      "priceCents": 675000,
+      "initialStock": 20,
+      "shortDescription": "Precision tie rod end for direct steering response.",
+      "description": "A forged outer tie rod end with a sealed ball joint, hardened stud, and corrosion-resistant finish for precise steering feel.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Outer"
+        },
+        {
+          "label": "Joint",
+          "value": "Sealed ball joint"
+        },
+        {
+          "label": "Quantity",
+          "value": "1 piece"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Suzuki, and Honda models.",
+      "images": [
+        {
+          "path": "/products/suspension.svg",
+          "alt": "Outer Tie Rod End product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_ball_joint",
+      "sku": "VA-SUS-004",
+      "partNumber": "43330-09510",
+      "slug": "lower-ball-joint",
+      "name": "Lower Ball Joint",
+      "categoryId": "cat_suspension",
+      "priceCents": 1250000,
+      "initialStock": 15,
+      "shortDescription": "Heavy-duty lower ball joint for SUVs and pickups.",
+      "description": "A heavy-duty lower ball joint with a reinforced housing and sealed bearing for larger vehicles and demanding road conditions.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Lower control arm"
+        },
+        {
+          "label": "Housing",
+          "value": "Forged steel"
+        },
+        {
+          "label": "Quantity",
+          "value": "1 piece"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Mitsubishi, and Kia models.",
+      "images": [
+        {
+          "path": "/products/suspension.svg",
+          "alt": "Lower Ball Joint product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    },
+    {
+      "id": "prod_wheel_bearing",
+      "sku": "VA-SUS-005",
+      "partNumber": "43550-0D080",
+      "slug": "front-wheel-bearing-hub",
+      "name": "Front Wheel Bearing Hub",
+      "categoryId": "cat_suspension",
+      "priceCents": 1450000,
+      "initialStock": 13,
+      "isFeatured": true,
+      "shortDescription": "Sealed wheel hub bearing for quiet, low-drag rotation.",
+      "description": "A sealed front wheel bearing hub assembly with pre-set tolerances, an integrated sensor ring where required, and a corrosion-resistant flange.",
+      "specifications": [
+        {
+          "label": "Position",
+          "value": "Front"
+        },
+        {
+          "label": "Type",
+          "value": "Sealed hub assembly"
+        },
+        {
+          "label": "Quantity",
+          "value": "1 hub"
+        }
+      ],
+      "fitmentSummary": "Fits selected Toyota, Honda, Nissan, and Hyundai models.",
+      "images": [
+        {
+          "path": "/products/suspension.svg",
+          "alt": "Front Wheel Bearing Hub product illustration",
+          "width": 800,
+          "height": 600
+        }
+      ],
+      "status": "active"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "veh_toyota_vitz_2018",
+      "make": "Toyota",
+      "model": "Vitz",
+      "year": 2018,
+      "engine": "1.0L 1KR-FE",
+      "variant": null,
+      "displayName": "Toyota Vitz 2018 1.0L 1KR-FE"
+    },
+    {
+      "id": "veh_toyota_aqua_2019",
+      "make": "Toyota",
+      "model": "Aqua",
+      "year": 2019,
+      "engine": "1.5L Hybrid",
+      "variant": null,
+      "displayName": "Toyota Aqua 2019 1.5L Hybrid"
+    },
+    {
+      "id": "veh_toyota_prius_2017",
+      "make": "Toyota",
+      "model": "Prius",
+      "year": 2017,
+      "engine": "1.8L Hybrid",
+      "variant": null,
+      "displayName": "Toyota Prius 2017 1.8L Hybrid"
+    },
+    {
+      "id": "veh_honda_fit_2018",
+      "make": "Honda",
+      "model": "Fit",
+      "year": 2018,
+      "engine": "1.5L",
+      "variant": null,
+      "displayName": "Honda Fit 2018 1.5L"
+    },
+    {
+      "id": "veh_honda_civic_2020",
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2020,
+      "engine": "1.5L Turbo",
+      "variant": "Sedan",
+      "displayName": "Honda Civic 2020 1.5L Turbo"
+    },
+    {
+      "id": "veh_suzuki_alto_2019",
+      "make": "Suzuki",
+      "model": "Alto",
+      "year": 2019,
+      "engine": "0.8L",
+      "variant": null,
+      "displayName": "Suzuki Alto 2019 0.8L"
+    },
+    {
+      "id": "veh_suzuki_swift_2018",
+      "make": "Suzuki",
+      "model": "Swift",
+      "year": 2018,
+      "engine": "1.2L",
+      "variant": null,
+      "displayName": "Suzuki Swift 2018 1.2L"
+    },
+    {
+      "id": "veh_nissan_leaf_2018",
+      "make": "Nissan",
+      "model": "Leaf",
+      "year": 2018,
+      "engine": "EV",
+      "variant": null,
+      "displayName": "Nissan Leaf 2018 EV"
+    },
+    {
+      "id": "veh_mitsubishi_outlander_2019",
+      "make": "Mitsubishi",
+      "model": "Outlander",
+      "year": 2019,
+      "engine": "2.4L",
+      "variant": null,
+      "displayName": "Mitsubishi Outlander 2019 2.4L"
+    },
+    {
+      "id": "veh_hyundai_tucson_2020",
+      "make": "Hyundai",
+      "model": "Tucson",
+      "year": 2020,
+      "engine": "2.0L",
+      "variant": null,
+      "displayName": "Hyundai Tucson 2020 2.0L"
+    },
+    {
+      "id": "veh_kia_sportage_2019",
+      "make": "Kia",
+      "model": "Sportage",
+      "year": 2019,
+      "engine": "2.0L",
+      "variant": null,
+      "displayName": "Kia Sportage 2019 2.0L"
+    },
+    {
+      "id": "veh_mazda_axela_2017",
+      "make": "Mazda",
+      "model": "Axela",
+      "year": 2017,
+      "engine": "1.5L",
+      "variant": null,
+      "displayName": "Mazda Axela 2017 1.5L"
+    },
+    {
+      "id": "veh_toyota_hilux_2020",
+      "make": "Toyota",
+      "model": "Hilux",
+      "year": 2020,
+      "engine": "2.4L Diesel",
+      "variant": "Double Cab",
+      "displayName": "Toyota Hilux 2020 2.4L Diesel"
+    },
+    {
+      "id": "veh_toyota_prado_2019",
+      "make": "Toyota",
+      "model": "Land Cruiser Prado",
+      "year": 2019,
+      "engine": "2.8L Diesel",
+      "variant": null,
+      "displayName": "Toyota Land Cruiser Prado 2019 2.8L Diesel"
+    },
+    {
+      "id": "veh_honda_vezel_2018",
+      "make": "Honda",
+      "model": "Vezel",
+      "year": 2018,
+      "engine": "1.5L Hybrid",
+      "variant": null,
+      "displayName": "Honda Vezel 2018 1.5L Hybrid"
+    },
+    {
+      "id": "veh_suzuki_wagonr_2019",
+      "make": "Suzuki",
+      "model": "Wagon R",
+      "year": 2019,
+      "engine": "1.0L",
+      "variant": null,
+      "displayName": "Suzuki Wagon R 2019 1.0L"
+    }
+  ],
+  "fitmentApplications": [
+    {
+      "id": "fit_brake_pad_front_toyota_vitz_2018",
+      "productId": "prod_brake_pad_front",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_brake_pad_front_toyota_aqua_2019",
+      "productId": "prod_brake_pad_front",
+      "vehicleId": "veh_toyota_aqua_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_brake_pad_front_honda_fit_2018",
+      "productId": "prod_brake_pad_front",
+      "vehicleId": "veh_honda_fit_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_brake_pad_front_suzuki_swift_2018",
+      "productId": "prod_brake_pad_front",
+      "vehicleId": "veh_suzuki_swift_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_brake_shoe_rear_toyota_vitz_2018",
+      "productId": "prod_brake_shoe_rear",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_brake_shoe_rear_toyota_aqua_2019",
+      "productId": "prod_brake_shoe_rear",
+      "vehicleId": "veh_toyota_aqua_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_brake_shoe_rear_suzuki_alto_2019",
+      "productId": "prod_brake_shoe_rear",
+      "vehicleId": "veh_suzuki_alto_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_brake_disc_front_toyota_vitz_2018",
+      "productId": "prod_brake_disc_front",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_brake_disc_front_honda_fit_2018",
+      "productId": "prod_brake_disc_front",
+      "vehicleId": "veh_honda_fit_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_brake_disc_front_suzuki_swift_2018",
+      "productId": "prod_brake_disc_front",
+      "vehicleId": "veh_suzuki_swift_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_abs_sensor_front_toyota_aqua_2019",
+      "productId": "prod_abs_sensor_front",
+      "vehicleId": "veh_toyota_aqua_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_abs_sensor_front_toyota_prius_2017",
+      "productId": "prod_abs_sensor_front",
+      "vehicleId": "veh_toyota_prius_2017",
+      "notes": null
+    },
+    {
+      "id": "fit_abs_sensor_front_honda_vezel_2018",
+      "productId": "prod_abs_sensor_front",
+      "vehicleId": "veh_honda_vezel_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_oil_filter_toyota_vitz_2018",
+      "productId": "prod_oil_filter",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_oil_filter_toyota_aqua_2019",
+      "productId": "prod_oil_filter",
+      "vehicleId": "veh_toyota_aqua_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_oil_filter_toyota_prius_2017",
+      "productId": "prod_oil_filter",
+      "vehicleId": "veh_toyota_prius_2017",
+      "notes": null
+    },
+    {
+      "id": "fit_oil_filter_honda_fit_2018",
+      "productId": "prod_oil_filter",
+      "vehicleId": "veh_honda_fit_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_oil_filter_honda_vezel_2018",
+      "productId": "prod_oil_filter",
+      "vehicleId": "veh_honda_vezel_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_air_filter_toyota_vitz_2018",
+      "productId": "prod_air_filter",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_air_filter_toyota_aqua_2019",
+      "productId": "prod_air_filter",
+      "vehicleId": "veh_toyota_aqua_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_air_filter_honda_fit_2018",
+      "productId": "prod_air_filter",
+      "vehicleId": "veh_honda_fit_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_air_filter_suzuki_swift_2018",
+      "productId": "prod_air_filter",
+      "vehicleId": "veh_suzuki_swift_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_cabin_filter_toyota_prius_2017",
+      "productId": "prod_cabin_filter",
+      "vehicleId": "veh_toyota_prius_2017",
+      "notes": null
+    },
+    {
+      "id": "fit_cabin_filter_honda_civic_2020",
+      "productId": "prod_cabin_filter",
+      "vehicleId": "veh_honda_civic_2020",
+      "notes": null
+    },
+    {
+      "id": "fit_cabin_filter_nissan_leaf_2018",
+      "productId": "prod_cabin_filter",
+      "vehicleId": "veh_nissan_leaf_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_cabin_filter_hyundai_tucson_2020",
+      "productId": "prod_cabin_filter",
+      "vehicleId": "veh_hyundai_tucson_2020",
+      "notes": null
+    },
+    {
+      "id": "fit_fuel_filter_toyota_hilux_2020",
+      "productId": "prod_fuel_filter",
+      "vehicleId": "veh_toyota_hilux_2020",
+      "notes": null
+    },
+    {
+      "id": "fit_fuel_filter_toyota_prado_2019",
+      "productId": "prod_fuel_filter",
+      "vehicleId": "veh_toyota_prado_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_fuel_filter_mitsubishi_outlander_2019",
+      "productId": "prod_fuel_filter",
+      "vehicleId": "veh_mitsubishi_outlander_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_fuel_filter_kia_sportage_2019",
+      "productId": "prod_fuel_filter",
+      "vehicleId": "veh_kia_sportage_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_transmission_filter_toyota_prius_2017",
+      "productId": "prod_transmission_filter",
+      "vehicleId": "veh_toyota_prius_2017",
+      "notes": null
+    },
+    {
+      "id": "fit_transmission_filter_honda_civic_2020",
+      "productId": "prod_transmission_filter",
+      "vehicleId": "veh_honda_civic_2020",
+      "notes": null
+    },
+    {
+      "id": "fit_transmission_filter_nissan_leaf_2018",
+      "productId": "prod_transmission_filter",
+      "vehicleId": "veh_nissan_leaf_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_led_headlight_h4_toyota_vitz_2018",
+      "productId": "prod_led_headlight_h4",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_led_headlight_h4_honda_fit_2018",
+      "productId": "prod_led_headlight_h4",
+      "vehicleId": "veh_honda_fit_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_led_headlight_h4_suzuki_alto_2019",
+      "productId": "prod_led_headlight_h4",
+      "vehicleId": "veh_suzuki_alto_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_led_headlight_h4_suzuki_swift_2018",
+      "productId": "prod_led_headlight_h4",
+      "vehicleId": "veh_suzuki_swift_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_fog_lamp_toyota_aqua_2019",
+      "productId": "prod_fog_lamp",
+      "vehicleId": "veh_toyota_aqua_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_fog_lamp_honda_vezel_2018",
+      "productId": "prod_fog_lamp",
+      "vehicleId": "veh_honda_vezel_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_fog_lamp_suzuki_wagonr_2019",
+      "productId": "prod_fog_lamp",
+      "vehicleId": "veh_suzuki_wagonr_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_tail_light_toyota_vitz_2018",
+      "productId": "prod_tail_light",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_tail_light_honda_fit_2018",
+      "productId": "prod_tail_light",
+      "vehicleId": "veh_honda_fit_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_tail_light_suzuki_swift_2018",
+      "productId": "prod_tail_light",
+      "vehicleId": "veh_suzuki_swift_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_headlight_assembly_toyota_prius_2017",
+      "productId": "prod_headlight_assembly",
+      "vehicleId": "veh_toyota_prius_2017",
+      "notes": null
+    },
+    {
+      "id": "fit_headlight_assembly_honda_civic_2020",
+      "productId": "prod_headlight_assembly",
+      "vehicleId": "veh_honda_civic_2020",
+      "notes": null
+    },
+    {
+      "id": "fit_headlight_assembly_mazda_axela_2017",
+      "productId": "prod_headlight_assembly",
+      "vehicleId": "veh_mazda_axela_2017",
+      "notes": null
+    },
+    {
+      "id": "fit_shock_absorber_front_toyota_vitz_2018",
+      "productId": "prod_shock_absorber_front",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_shock_absorber_front_honda_fit_2018",
+      "productId": "prod_shock_absorber_front",
+      "vehicleId": "veh_honda_fit_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_shock_absorber_front_suzuki_swift_2018",
+      "productId": "prod_shock_absorber_front",
+      "vehicleId": "veh_suzuki_swift_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_shock_absorber_front_mazda_axela_2017",
+      "productId": "prod_shock_absorber_front",
+      "vehicleId": "veh_mazda_axela_2017",
+      "notes": null
+    },
+    {
+      "id": "fit_coil_spring_toyota_aqua_2019",
+      "productId": "prod_coil_spring",
+      "vehicleId": "veh_toyota_aqua_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_coil_spring_toyota_prius_2017",
+      "productId": "prod_coil_spring",
+      "vehicleId": "veh_toyota_prius_2017",
+      "notes": null
+    },
+    {
+      "id": "fit_coil_spring_honda_vezel_2018",
+      "productId": "prod_coil_spring",
+      "vehicleId": "veh_honda_vezel_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_tie_rod_end_toyota_vitz_2018",
+      "productId": "prod_tie_rod_end",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_tie_rod_end_suzuki_alto_2019",
+      "productId": "prod_tie_rod_end",
+      "vehicleId": "veh_suzuki_alto_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_tie_rod_end_honda_fit_2018",
+      "productId": "prod_tie_rod_end",
+      "vehicleId": "veh_honda_fit_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_ball_joint_toyota_hilux_2020",
+      "productId": "prod_ball_joint",
+      "vehicleId": "veh_toyota_hilux_2020",
+      "notes": null
+    },
+    {
+      "id": "fit_ball_joint_toyota_prado_2019",
+      "productId": "prod_ball_joint",
+      "vehicleId": "veh_toyota_prado_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_ball_joint_mitsubishi_outlander_2019",
+      "productId": "prod_ball_joint",
+      "vehicleId": "veh_mitsubishi_outlander_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_ball_joint_kia_sportage_2019",
+      "productId": "prod_ball_joint",
+      "vehicleId": "veh_kia_sportage_2019",
+      "notes": null
+    },
+    {
+      "id": "fit_wheel_bearing_toyota_vitz_2018",
+      "productId": "prod_wheel_bearing",
+      "vehicleId": "veh_toyota_vitz_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_wheel_bearing_honda_civic_2020",
+      "productId": "prod_wheel_bearing",
+      "vehicleId": "veh_honda_civic_2020",
+      "notes": null
+    },
+    {
+      "id": "fit_wheel_bearing_nissan_leaf_2018",
+      "productId": "prod_wheel_bearing",
+      "vehicleId": "veh_nissan_leaf_2018",
+      "notes": null
+    },
+    {
+      "id": "fit_wheel_bearing_hyundai_tucson_2020",
+      "productId": "prod_wheel_bearing",
+      "vehicleId": "veh_hyundai_tucson_2020",
+      "notes": null
+    }
+  ]
+}

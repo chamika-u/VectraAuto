@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Filter components illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f2a28"/>
+      <stop offset="1" stop-color="#24504b"/>
+    </linearGradient>
+    <linearGradient id="can" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6f8f9"/>
+      <stop offset=".55" stop-color="#bfd0cd"/>
+      <stop offset="1" stop-color="#6e8a86"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <g transform="translate(275 125)">
+    <rect x="0" y="0" width="250" height="300" rx="30" fill="url(#can)"/>
+    <rect x="0" y="72" width="250" height="26" fill="#3c6b64"/>
+    <rect x="0" y="202" width="250" height="26" fill="#3c6b64"/>
+    <circle cx="125" cy="36" r="22" fill="#375a55"/>
+    <path d="M36 250h178" stroke="#ffffff" stroke-opacity=".55" stroke-width="4" stroke-linecap="round"/>
+    <path d="M36 264h122" stroke="#ffffff" stroke-opacity=".35" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g fill="none" stroke="#7fd0b8" stroke-width="7" stroke-linecap="round" opacity=".8">
+    <path d="M585 168c54 18 74 58 48 98"/>
+    <path d="M585 226c36 12 50 38 32 66"/>
+  </g>
+  <text x="56" y="540" fill="#f7f9fb" font-family="Arial, sans-serif" font-size="34" font-weight="700">FILTERS</text>
+  <text x="56" y="570" fill="#9bbdb6" font-family="Arial, sans-serif" font-size="18">Cleaner air, oil, and fuel</text>
+</svg>

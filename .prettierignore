@@ -1,0 +1,8 @@
+node_modules
+.next
+coverage
+playwright-report
+test-results
+package-lock.json
+data/catalog.seed.json
+data/runtime.store.json

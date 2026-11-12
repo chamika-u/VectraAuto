@@ -10,6 +10,15 @@
 
 # Testing
 /coverage
+/playwright-report
+/test-results
+/blob-report
+/.nyc_output
+
+# Local runtime data
+/data/runtime.store.json
+/data/*.tmp
+npm-install.log
 
 # Next.js
 /.next/
