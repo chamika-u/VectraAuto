@@ -25,12 +25,7 @@ export default function CartPage() {
   if (state.items.length === 0) {
     return (
       <div className="container section">
-        <EmptyState
-          title="Your cart is empty"
-          message="Browse the catalog, choose a part, and add it to your cart to begin checkout."
-          actionLabel="Browse parts"
-          actionHref="/products"
-        />
+        <CartEmpty />
       </div>
     );
   }
