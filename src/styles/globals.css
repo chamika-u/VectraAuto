@@ -1173,6 +1173,45 @@ img {
   letter-spacing: -0.05em;
 }
 
+.confirmation-hero {
+  text-align: center;
+  padding: 44px 0 10px;
+}
+
+.confirmation-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  box-shadow: 0 12px 30px rgba(27, 100, 84, 0.14);
+}
+
+.confirmation-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.confirmation-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
 .empty-state {
   text-align: center;
   padding: 54px 24px;

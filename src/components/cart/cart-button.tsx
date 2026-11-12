@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/components/cart/cart-provider";
 import { CartDrawer } from "@/components/cart/cart-drawer";

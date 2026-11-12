@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { MOTION } from "@/lib/motion";
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
