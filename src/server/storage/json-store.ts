@@ -112,6 +112,35 @@ export class JsonStore {
     });
   }
 
+  async purgeNow(now = new Date()): Promise<{ removedOrders: number; removedIdempotency: number }> {
+    return this.mutex.runExclusive(async () => {
+      const catalog = await this.getCatalog();
+      let runtime: RuntimeStore;
+      try {
+        const content = await readFile(this.settings.runtimePath, "utf8");
+        const parsed = JSON.parse(content) as unknown;
+        if (!isRuntimeStore(parsed)) {
+          throw new Error("Runtime store has an unsupported shape.");
+        }
+        runtime = parsed;
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+          return { removedOrders: 0, removedIdempotency: 0 };
+        }
+        throw error;
+      }
+
+      const purged = purgeExpiredData(runtime, now, catalog.retentionDays);
+      if (purged.removedOrders > 0 || purged.removedIdempotency > 0) {
+        await this.writeRuntimeUnlocked(purged.store);
+      }
+      return {
+        removedOrders: purged.removedOrders,
+        removedIdempotency: purged.removedIdempotency,
+      };
+    });
+  }
+
   private async loadRuntimeUnlocked(catalog: CatalogSeed): Promise<RuntimeStore> {
     let runtime: RuntimeStore;
     try {
