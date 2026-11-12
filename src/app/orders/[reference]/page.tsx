@@ -30,9 +30,11 @@ export default async function OrderConfirmationPage({
   const { reference } = await params;
   const order = await findOrderByReference(getStore(), reference);
   if (!order) notFound();
+  // After notFound(), order is guaranteed non-null
+  const o = order!;
 
   const paymentLabel =
-    order.payment.method === "cod"
+    o.payment.method === "cod"
       ? "Cash on Delivery — payment pending"
       : "Simulated card — demo payment, not charged";
 
@@ -45,12 +47,12 @@ export default async function OrderConfirmationPage({
         <p className="eyebrow" style={{ justifyContent: "center" }}>Order confirmed</p>
         <h1 className="section-title">Thank you for your order</h1>
         <p className="section-copy" style={{ maxWidth: 620, margin: "0 auto" }}>
-          Your reference is <strong>{order.reference}</strong>. Keep it handy if you need to contact us
+          Your reference is <strong>{o.reference}</strong>. Keep it handy if you need to contact us
           about this order. Order data is automatically removed after 30 days.
         </p>
         <div className="confirmation-meta">
-          <span><PackageCheck size={15} aria-hidden="true" /> {order.items.length} line{order.items.length === 1 ? "" : "s"}</span>
-          <span><Truck size={15} aria-hidden="true" /> Delivery {formatLkr(order.deliveryFeeCents)}</span>
+          <span><PackageCheck size={15} aria-hidden="true" /> {o.items.length} line{o.items.length === 1 ? "" : "s"}</span>
+          <span><Truck size={15} aria-hidden="true" /> Delivery {formatLkr(o.deliveryFeeCents)}</span>
           <span><CreditCard size={15} aria-hidden="true" /> {paymentLabel}</span>
         </div>
       </div>
@@ -59,7 +61,7 @@ export default async function OrderConfirmationPage({
         <section className="panel checkout-card" aria-labelledby="order-items-heading">
           <h2 id="order-items-heading">Items</h2>
           <div className="review-list">
-            {order.items.map((item) => (
+            {o.items.map((item) => (
               <div className="review-item" key={item.productId}>
                 <span>
                   <strong>{item.name}</strong>
@@ -78,28 +80,28 @@ export default async function OrderConfirmationPage({
             ))}
           </div>
           <div className="summary">
-            <div className="summary-row"><span>Subtotal</span><span>{formatLkr(order.subtotalCents)}</span></div>
-            <div className="summary-row"><span>Delivery</span><span>{formatLkr(order.deliveryFeeCents)}</span></div>
-            <div className="summary-row total"><span>Total</span><span>{formatLkr(order.grandTotalCents)}</span></div>
+            <div className="summary-row"><span>Subtotal</span><span>{formatLkr(o.subtotalCents)}</span></div>
+            <div className="summary-row"><span>Delivery</span><span>{formatLkr(o.deliveryFeeCents)}</span></div>
+            <div className="summary-row total"><span>Total</span><span>{formatLkr(o.grandTotalCents)}</span></div>
           </div>
-          <p className="field-hint" style={{ marginTop: 12 }}>Placed {formatDate(order.createdAt)}</p>
+          <p className="field-hint" style={{ marginTop: 12 }}>Placed {formatDate(o.createdAt)}</p>
         </section>
 
         <aside className="checkout-aside">
           <div className="panel checkout-card">
             <h2><MapPin size={17} aria-hidden="true" /> Delivery</h2>
             <address style={{ fontStyle: "normal", lineHeight: 1.7, color: "var(--ink-soft)" }}>
-              {order.delivery.addressLine1}
+              {o.delivery.addressLine1}
               <br />
-              {order.delivery.addressLine2 ? <>{order.delivery.addressLine2}<br /></> : null}
-              {order.delivery.city} {order.delivery.postalCode}
+              {o.delivery.addressLine2 ? <>{o.delivery.addressLine2}<br /></> : null}
+              {o.delivery.city} {o.delivery.postalCode}
             </address>
-            {order.delivery.notes ? (
-              <p className="field-hint">Notes: {order.delivery.notes}</p>
+            {o.delivery.notes ? (
+              <p className="field-hint">Notes: {o.delivery.notes}</p>
             ) : null}
-            {order.vehicle ? (
+            {o.vehicle ? (
               <div className="alert alert-success" style={{ marginTop: 14 }}>
-                <span>Vehicle: <strong>{order.vehicle.displayName}</strong></span>
+                <span>Vehicle: <strong>{o.vehicle.displayName}</strong></span>
               </div>
             ) : null}
             <div style={{ display: "grid", gap: 10, marginTop: 18 }}>

@@ -86,7 +86,7 @@ export default function CartPage() {
                 className="button button-primary"
                 href={blocked ? "/cart" : "/checkout"}
                 aria-disabled={blocked}
-                onClick={(event) => {
+                onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
                   if (blocked) event.preventDefault();
                 }}
               >

@@ -52,6 +52,8 @@ export default async function ProductDetailPage({
   const vehicle = resolveVehicleFromParams(catalog.vehicles, query);
   const product = getProductDetail(catalog, runtime, slug, vehicle);
   if (!product) notFound();
+  // After notFound(), product is guaranteed non-null for TypeScript
+  const p = product!;
 
   return (
     <div className="container">
@@ -64,36 +66,36 @@ export default async function ProductDetailPage({
 
       <div className="detail-layout">
         <Reveal>
-          <ProductGallery images={product.images} productName={product.name} />
+          <ProductGallery images={p.images} productName={p.name} />
         </Reveal>
         <Reveal delay={0.06}>
-          <p className="eyebrow">{product.category.name}</p>
-          <h1 className="detail-title">{product.name}</h1>
-          <p className="detail-copy" style={{ marginTop: 14 }}>{product.shortDescription}</p>
-          <p className="detail-price">{formatLkr(product.priceCents)}</p>
+          <p className="eyebrow">{p.category.name}</p>
+          <h1 className="detail-title">{p.name}</h1>
+          <p className="detail-copy" style={{ marginTop: 14 }}>{p.shortDescription}</p>
+          <p className="detail-price">{formatLkr(p.priceCents)}</p>
 
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 16 }}>
-            <CompatibilityBadge compatibility={product.compatibility} />
+            <CompatibilityBadge compatibility={p.compatibility} />
             <span className="badge badge-neutral">
               <Package size={12} aria-hidden="true" />
-              {product.availability === "available"
-                ? `${product.availableQuantity} in stock`
+              {p.availability === "available"
+                ? `${p.availableQuantity} in stock`
                 : "Out of stock"}
             </span>
-            <span className="badge badge-neutral">SKU {product.sku}</span>
+            <span className="badge badge-neutral">SKU {p.sku}</span>
           </div>
 
-          {product.compatibilityNote ? (
+          {p.compatibilityNote ? (
             <div
-              className={`alert ${product.compatibility === "compatible" ? "alert-success" : "alert-warning"}`}
+              className={`alert ${p.compatibility === "compatible" ? "alert-success" : "alert-warning"}`}
               style={{ marginTop: 18 }}
             >
-              {product.compatibility === "compatible" ? (
+              {p.compatibility === "compatible" ? (
                 <CheckCircle2 size={16} aria-hidden="true" />
               ) : (
                 <AlertTriangle size={16} aria-hidden="true" />
               )}
-              <span>{product.compatibilityNote}</span>
+              <span>{p.compatibilityNote}</span>
             </div>
           ) : null}
 
@@ -101,26 +103,26 @@ export default async function ProductDetailPage({
             <div className="buy-row">
               <div>
                 <p className="field-hint" style={{ marginBottom: 5 }}>Part number</p>
-                <p style={{ margin: 0, fontWeight: 700 }}>{product.partNumber}</p>
+                <p style={{ margin: 0, fontWeight: 700 }}>{p.partNumber}</p>
               </div>
               <span className="stock-note">
-                <span className={`stock-dot ${product.availability === "available" ? "" : "out"}`} />
-                {product.availability === "available" ? "Ready to order" : "Currently unavailable"}
+                <span className={`stock-dot ${p.availability === "available" ? "" : "out"}`} />
+                {p.availability === "available" ? "Ready to order" : "Currently unavailable"}
               </span>
             </div>
             <div style={{ marginTop: 16 }}>
               <AddToCartButton
                 product={{
-                  id: product.id,
-                  slug: product.slug,
-                  sku: product.sku,
-                  name: product.name,
-                  priceCents: product.priceCents,
-                  imagePath: product.imagePath,
-                  imageAlt: product.imageAlt,
-                  availableStock: product.availableQuantity,
+                  id: p.id,
+                  slug: p.slug,
+                  sku: p.sku,
+                  name: p.name,
+                  priceCents: p.priceCents,
+                  imagePath: p.imagePath,
+                  imageAlt: p.imageAlt,
+                  availableStock: p.availableQuantity,
                 }}
-                compatibility={product.compatibility}
+                compatibility={p.compatibility}
                 size="md"
               />
             </div>
@@ -131,9 +133,9 @@ export default async function ProductDetailPage({
 
           <div style={{ marginTop: 26 }}>
             <h2 className="panel-title">Details</h2>
-            <p className="detail-copy">{product.description}</p>
+            <p className="detail-copy">{p.description}</p>
             <dl className="spec-list">
-              {product.specifications.map((specification) => (
+              {p.specifications.map((specification) => (
                 <div className="spec-row" key={specification.label}>
                   <dt>{specification.label}</dt>
                   <dd>{specification.value}</dd>
@@ -144,10 +146,10 @@ export default async function ProductDetailPage({
 
           <div style={{ marginTop: 26 }}>
             <h2 className="panel-title">Fitment</h2>
-            <p className="detail-copy">{product.fitmentSummary}</p>
-            {product.fitmentApplications.length > 0 ? (
+            <p className="detail-copy">{p.fitmentSummary}</p>
+            {p.fitmentApplications.length > 0 ? (
               <ul style={{ margin: "12px 0 0", paddingLeft: 18, color: "var(--ink-soft)", lineHeight: 1.7 }}>
-                {product.fitmentApplications.map((application) => (
+                {p.fitmentApplications.map((application) => (
                   <li key={application.vehicleId}>
                     {application.displayName}
                     {application.notes ? ` — ${application.notes}` : ""}
