@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Brake components illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101820"/>
+      <stop offset="1" stop-color="#26384a"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3f5f7"/>
+      <stop offset="1" stop-color="#9aa8b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <circle cx="400" cy="300" r="178" fill="none" stroke="#31485e" stroke-width="46"/>
+  <circle cx="400" cy="300" r="160" fill="url(#metal)"/>
+  <circle cx="400" cy="300" r="82" fill="#17232f"/>
+  <circle cx="400" cy="300" r="34" fill="#0c141c"/>
+  <g fill="#5e7184">
+    <circle cx="400" cy="190" r="12"/><circle cx="400" cy="410" r="12"/>
+    <circle cx="290" cy="300" r="12"/><circle cx="510" cy="300" r="12"/>
+    <circle cx="322" cy="222" r="12"/><circle cx="478" cy="378" r="12"/>
+    <circle cx="478" cy="222" r="12"/><circle cx="322" cy="378" r="12"/>
+  </g>
+  <path d="M282 214c42-44 112-52 162-18l-34 44c-31-20-73-14-96 12z" fill="#e8b04b"/>
+  <text x="56" y="540" fill="#f7f9fb" font-family="Arial, sans-serif" font-size="34" font-weight="700">BRAKES</text>
+  <text x="56" y="570" fill="#8fa3b6" font-family="Arial, sans-serif" font-size="18">Confident stopping, every drive</text>
+</svg>
