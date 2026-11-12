@@ -30,6 +30,7 @@ VectraAuto is a modern, high-performance automotive parts e-commerce storefront 
 - **Cart & Stock Management**: Client-side persisted shopping cart with automated inventory validation and stock conflict resolution.
 - **Simulated Checkout**: Multi-step checkout process with delivery calculation, order summary, and sandbox credit card simulation.
 - **Order Tracking**: Immediate order confirmation and tracking lookup via unique order references.
+- **Admin Control Panel**: Dedicated management portal (`/admin`) for real-time overview analytics, order fulfillment status updates, atomic inventory adjustments, catalog price/visibility editing, vehicle fitment lookup, and system retention maintenance.
 - **File-Backed JSON Storage**: Lightweight, zero-external-database persistence with file locking and atomic updates (`data/runtime.store.json`).
 
 ---
@@ -142,6 +143,19 @@ The checkout uses a sandbox simulation. No actual credit card transactions are p
 - **Expiry Date**: Any future date (e.g. `12/28`)
 - **CVC**: Any 3 or 4 digits (e.g. `123`)
 - **Cardholder Name**: Any name (e.g. `Demo User`)
+
+---
+
+## Admin Control Panel
+
+Access the administrator portal directly at `http://localhost:3000/admin` (or click **Admin** in the site header / footer).
+
+### Key Features:
+- **📊 Overview Dashboard (`/admin`)**: Real-time sales metrics (Total Gross Revenue in LKR, Orders count, Low Stock count, Active SKUs), recent customer orders list, and low-stock inventory alerts.
+- **📦 Orders Management (`/admin/orders`)**: Filter by status (`confirmed`, `processing`, `dispatched`, `delivered`, `cancelled`) or payment method, search by reference / customer name / phone, and open the full order inspector drawer to see customer contact, delivery destination, vehicle snapshot, itemized parts, and change order fulfillment status.
+- **🏷️ Products & Inventory (`/admin/products`)**: Real-time inventory table with one-click atomic stock increments/decrements (+ / -), direct stock input, category and stock level filters, and product editing modal (modify price in LKR, stock count, featured badge, and active/inactive status).
+- **🚗 Vehicles & Fitment (`/admin/vehicles`)**: Vehicle compatibility catalog with search by Year, Make, Model and mapped compatible part counts.
+- **⚙️ System Maintenance & Settings (`/admin/settings`)**: View store retention policy, trigger on-demand retention purges, execute atomic database reseeds / resets (`--reset`), and export store JSON snapshots.
 
 ---
 
