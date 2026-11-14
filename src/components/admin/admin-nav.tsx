@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState, useEffect, useTransition } from "react";
 import {
   LayoutDashboard,
   ShoppingBag,
@@ -10,6 +11,7 @@ import {
   Settings,
   ArrowLeft,
   Shield,
+  Loader2,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -47,6 +49,27 @@ const NAV_ITEMS = [
 
 export function AdminNav() {
   const pathname = usePathname();
+  const router = useRouter();
+  const [, startTransition] = useTransition();
+  const [navigatingHref, setNavigatingHref] = useState<string | null>(null);
+
+  // Clear navigating state whenever pathname finishes updating
+  useEffect(() => {
+    setNavigatingHref(null);
+  }, [pathname]);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // If clicking current route, ignore
+    if (pathname === href) {
+      e.preventDefault();
+      return;
+    }
+
+    setNavigatingHref(href);
+    startTransition(() => {
+      router.push(href);
+    });
+  };
 
   return (
     <nav className="admin-sidebar" aria-label="Admin Navigation">
@@ -62,18 +85,27 @@ export function AdminNav() {
         <span className="admin-nav-header">Management</span>
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
-          const isActive = item.exact
+          const isTargetPending = navigatingHref === item.href;
+          const isCurrentActive = item.exact
             ? pathname === item.href
             : pathname.startsWith(item.href);
+
+          // Optimistically show active if user just clicked it
+          const isActive = navigatingHref ? isTargetPending : isCurrentActive;
 
           return (
             <Link
               key={item.href}
               href={item.href}
+              prefetch={true}
+              onClick={(e) => handleNavClick(e, item.href)}
               className={`admin-nav-item ${isActive ? "active" : ""}`}
             >
-              <Icon className="w-4 h-4" />
-              <span>{item.label}</span>
+              <Icon className="w-4 h-4 shrink-0" />
+              <span className="flex-1">{item.label}</span>
+              {isTargetPending && (
+                <Loader2 className="w-3.5 h-3.5 animate-spin text-emerald-300 shrink-0" />
+              )}
             </Link>
           );
         })}
@@ -91,7 +123,7 @@ export function AdminNav() {
           <p className="text-xs text-stone-500 mt-1">JSON Atomic Runtime</p>
         </div>
 
-        <Link href="/" className="admin-return-link">
+        <Link href="/" prefetch={true} className="admin-return-link">
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Storefront</span>
         </Link>

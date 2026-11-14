@@ -177,7 +177,23 @@ export default function AdminOrdersPage() {
 
       {/* Orders Table */}
       <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-xs">
-        {orders.length === 0 ? (
+        {isLoading ? (
+          <div className="p-8 space-y-4">
+            <div className="flex items-center justify-between pb-4 border-b border-stone-100 animate-pulse">
+              <div className="h-4 bg-stone-200 rounded w-1/4"></div>
+              <div className="h-4 bg-stone-200 rounded w-1/6"></div>
+            </div>
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="flex items-center justify-between py-3 space-x-4 animate-pulse">
+                <div className="h-4 bg-stone-100 rounded w-28"></div>
+                <div className="h-4 bg-stone-100 rounded w-36"></div>
+                <div className="h-4 bg-stone-100 rounded w-24"></div>
+                <div className="h-4 bg-stone-100 rounded w-16"></div>
+                <div className="h-6 bg-stone-100 rounded-full w-20"></div>
+              </div>
+            ))}
+          </div>
+        ) : orders.length === 0 ? (
           <div className="p-16 text-center text-stone-500">
             <ShoppingBag className="w-10 h-10 mx-auto text-stone-300 mb-3" />
             <h3 className="text-base font-semibold text-stone-900">No orders match criteria</h3>

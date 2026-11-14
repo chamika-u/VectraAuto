@@ -1453,6 +1453,7 @@ img {
   top: 73px;
   height: calc(100vh - 73px);
   overflow-y: auto;
+  z-index: 20;
 }
 
 .admin-brand-section {
@@ -1513,12 +1514,18 @@ img {
   font-size: 0.875rem;
   font-weight: 600;
   color: #475569;
+  cursor: pointer;
+  user-select: none;
   transition: all 0.15s ease;
 }
 
 .admin-nav-item:hover {
   background: #f1f5f9;
   color: #0f172a;
+}
+
+.admin-nav-item:active {
+  transform: scale(0.98);
 }
 
 .admin-nav-item.active {
