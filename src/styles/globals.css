@@ -7,14 +7,14 @@
   --ink: #1d1d1f;
   --ink-soft: #5f6368;
   --line: rgba(29, 29, 31, 0.1);
-  --accent: #1f6f5f;
-  --accent-strong: #17584b;
-  --accent-soft: #e6f2ee;
+  --accent: #d9232e;
+  --accent-strong: #a91520;
+  --accent-soft: #fff0f1;
   --warning: #9a5b00;
   --warning-soft: #fff2d9;
   --danger: #b3261e;
   --danger-soft: #fdecea;
-  --success: #1f6f5f;
+  --success: #198754;
   --radius-sm: 12px;
   --radius-md: 18px;
   --radius-lg: 28px;
@@ -94,7 +94,7 @@ img {
   top: 0;
   z-index: 40;
   background: rgba(245, 245, 247, 0.82);
-  backdrop-filter: saturate(160%) blur(18px);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
 
@@ -127,6 +127,14 @@ img {
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: -0.06em;
+}
+
+.brand-logo {
+  display: block;
+  width: 112px;
+  height: 48px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 .nav-links {
@@ -1431,9 +1439,9 @@ img {
 }
 
 
-/* ==========================================================================
+/* 
    Admin Panel Styles
-   ========================================================================== */
+    */
 
 .admin-shell {
   display: flex;

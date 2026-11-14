@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "currency": "LKR",
-  "deliveryFeeCents": 50000,
+  "deliveryFeeCents": 0,
   "retentionDays": 30,
   "categories": [
     {
@@ -451,7 +451,7 @@
       "initialStock": 11,
       "images": [
         {
-          "path": "/products/fog-lamp.jpg",
+          "path": "/products/fog-lamp-v2.jpg",
           "alt": "Front Fog Lamp Kit product photo",
           "width": 800,
           "height": 600
@@ -487,7 +487,7 @@
       "initialStock": 8,
       "images": [
         {
-          "path": "/products/tail-light.jpg",
+          "path": "/products/tail-light-v2.jpg",
           "alt": "Rear Tail Light Assembly product photo",
           "width": 800,
           "height": 600

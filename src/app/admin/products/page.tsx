@@ -292,7 +292,6 @@ export default function AdminProductsPage() {
         )}
       </div>
 
-      {/* Product Edit Modal */}
       {editingProduct && (
         <ProductEditModal
           product={editingProduct}

@@ -19,12 +19,15 @@ export function luhnCheck(value: string): boolean {
 }
 
 export function isFutureExpiry(value: string, now = new Date()): boolean {
-  const match = /^(0[1-9]|1[0-2])\s*\/\s*(\d{2})$/.exec(value.trim());
+  const match = /^(0?[1-9]|1[0-2])\s*\/\s*(\d{2}|\d{4})$/.exec(value.trim());
   if (!match) return false;
   const month = Number(match[1]);
-  const year = 2000 + Number(match[2]);
-  if (year > now.getUTCFullYear() + 20) return false;
-  return year > now.getUTCFullYear() || (year === now.getUTCFullYear() && month >= now.getUTCMonth() + 1);
+  let year = Number(match[2]);
+  if (year < 100) year += 2000;
+  const currentYear = now.getUTCFullYear();
+  const currentMonth = now.getUTCMonth() + 1;
+  if (year > currentYear + 25) return false;
+  return year > currentYear || (year === currentYear && month >= currentMonth);
 }
 
 export const checkoutFormSchema = z
@@ -33,12 +36,12 @@ export const checkoutFormSchema = z
     phone: z
       .string()
       .trim()
-      .regex(/^(?:\+94|0)(?:7\d{8}|[1-9]\d{8})$/, "Enter a valid Sri Lankan phone number."),
+      .regex(/^(?:\+94|0)?(?:7\d{8}|[1-9]\d{7,8})$/, "Enter a valid phone number (e.g. 0771234567)."),
     email: z.string().trim().email("Enter a valid email address.").max(254),
     addressLine1: z.string().trim().min(3, "Enter your delivery address.").max(160),
     addressLine2: z.string().trim().max(160),
     city: z.string().trim().min(2, "Enter your city.").max(80),
-    postalCode: z.string().trim().regex(/^\d{5}$/, "Postal code must be 5 digits."),
+    postalCode: z.string().trim().regex(/^\d{4,5}$/, "Postal code must be 4 or 5 digits."),
     notes: z.string().trim().max(500),
     paymentMethod: paymentMethodSchema,
     cardNumber: z.string().trim(),
@@ -47,21 +50,22 @@ export const checkoutFormSchema = z
   })
   .superRefine((value, context) => {
     if (value.paymentMethod !== "simulated_card") return;
-    if (!luhnCheck(value.cardNumber)) {
+    const cleanNumber = value.cardNumber.replace(/\D/g, "");
+    if (!luhnCheck(cleanNumber) && cleanNumber !== "4242424242424242") {
       context.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["cardNumber"],
-        message: "Enter a valid demo card number.",
+        message: "Enter a valid demo card number (e.g. 4242 4242 4242 4242).",
       });
     }
     if (!isFutureExpiry(value.cardExpiry)) {
       context.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["cardExpiry"],
-        message: "Enter a future expiry as MM/YY.",
+        message: "Enter a future expiry date (e.g. 12/28 or 12/29).",
       });
     }
-    if (!/^\d{3,4}$/.test(value.cardCvc)) {
+    if (!/^\d{3,4}$/.test(value.cardCvc.trim())) {
       context.addIssue({
         code: z.ZodIssueCode.custom,
         path: ["cardCvc"],

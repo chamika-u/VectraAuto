@@ -7,7 +7,7 @@ export const customerContactSchema = z
     phone: z
       .string()
       .trim()
-      .regex(/^(?:\+94|0)(?:7\d{8}|[1-9]\d{8})$/, "Enter a valid Sri Lankan phone number."),
+      .regex(/^(?:\+94|0)?(?:7\d{8}|[1-9]\d{7,8})$/, "Enter a valid Sri Lankan phone number."),
     email: z.string().trim().email().max(254),
   })
   .strict();
@@ -17,7 +17,7 @@ export const deliveryDetailsSchema = z
     addressLine1: z.string().trim().min(3).max(160),
     addressLine2: z.string().trim().max(160).nullable(),
     city: z.string().trim().min(2).max(80),
-    postalCode: z.string().trim().regex(/^\d{5}$/, "Postal code must be 5 digits."),
+    postalCode: z.string().trim().regex(/^\d{4,5}$/, "Postal code must be 4 or 5 digits."),
     notes: z.string().trim().max(500).nullable(),
   })
   .strict();
@@ -36,7 +36,7 @@ export const orderRequestSchema = z
   .object({
     customer: customerContactSchema,
     delivery: deliveryDetailsSchema,
-    vehicleId: z.string().min(1).nullable(),
+    vehicleId: z.preprocess((val) => (val === "" ? null : val), z.string().min(1).nullable().optional()),
     items: z.array(orderItemInputSchema).min(1).max(50),
     payment: z
       .object({
