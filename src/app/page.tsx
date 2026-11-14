@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, Search, ShieldCheck, Truck } from "lucide-react";
 import { FitmentFinder } from "@/components/fitment/fitment-finder";
 import { ProductGrid } from "@/components/catalog/product-grid";
-import { Reveal } from "@/components/ui/reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { buildVehicleQuery, resolveVehicleFromParams } from "@/server/catalog/fitment";
 import { getFeaturedProducts } from "@/server/catalog/repository";
 import { getStore } from "@/server/storage/json-store";
@@ -80,11 +80,10 @@ export default async function HomePage({
             </Link>
             </div>
           </Reveal>
-          <Reveal>
-            <div className="category-grid">
-              {categories.map((category) => (
+          <Stagger className="category-grid">
+            {categories.map((category) => (
+              <StaggerItem key={category.id}>
                 <Link
-                  key={category.id}
                   href={`/products?category=${encodeURIComponent(category.slug)}`}
                   className="category-card"
                 >
@@ -96,9 +95,9 @@ export default async function HomePage({
                     <p>{category.description}</p>
                   </div>
                 </Link>
-              ))}
-            </div>
-          </Reveal>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </section>
 
         <section className="section" aria-labelledby="featured-heading">
