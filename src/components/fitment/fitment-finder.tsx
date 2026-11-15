@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Check, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,18 +19,11 @@ export function FitmentFinder({
 }) {
   const router = useRouter();
   const { vehicle, selectVehicle, clearVehicle } = useVehicleSelection();
-  const [make, setMake] = useState(vehicle?.make ?? "");
-  const [model, setModel] = useState(vehicle?.model ?? "");
-  const [year, setYear] = useState(vehicle ? String(vehicle.year) : "");
-  const [engine, setEngine] = useState(vehicle?.engine ?? "");
+  const [make, setMake] = useState("");
+  const [model, setModel] = useState("");
+  const [year, setYear] = useState("");
+  const [engine, setEngine] = useState("");
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    setMake(vehicle?.make ?? "");
-    setModel(vehicle?.model ?? "");
-    setYear(vehicle ? String(vehicle.year) : "");
-    setEngine(vehicle?.engine ?? "");
-  }, [vehicle?.vehicleId, vehicle?.make, vehicle?.model, vehicle?.year, vehicle?.engine]);
 
   const makes = useMemo(
     () => [...new Set(vehicles.map((entry) => entry.make))].sort((a, b) => a.localeCompare(b)),
@@ -123,16 +116,6 @@ export function FitmentFinder({
         Choose a prepared vehicle to see compatible parts across the catalog.
       </p>
 
-      {vehicle ? (
-        <div className="selected-vehicle" style={{ marginTop: 18 }}>
-          <div>
-            <strong>{vehicle.displayName}</strong>
-            <span>Saved for this browser</span>
-          </div>
-          <Check size={18} aria-hidden="true" />
-        </div>
-      ) : null}
-
       <div className="fitment-grid">
         <div className="field">
           <label htmlFor="fitment-make">Make</label>
@@ -218,7 +201,7 @@ export function FitmentFinder({
           <Check size={16} aria-hidden="true" />
           Show compatible parts
         </Button>
-        {vehicle ? (
+        {make || model || year || vehicle ? (
           <Button variant="ghost" onClick={handleClear}>
             <RotateCcw size={15} aria-hidden="true" />
             Clear vehicle

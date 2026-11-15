@@ -12,7 +12,7 @@ export const cartValidationItemSchema = z
 export const cartValidationRequestSchema = z
   .object({
     items: z.array(cartValidationItemSchema).min(1).max(50),
-    vehicleId: z.string().min(1).nullable().optional(),
+    vehicleId: z.preprocess((val) => (val === "" ? null : val), z.string().min(1).nullable().optional()),
   })
   .strict()
   .superRefine((value, context) => {

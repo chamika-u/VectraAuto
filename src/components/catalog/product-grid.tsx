@@ -1,4 +1,5 @@
 import { ProductCard } from "@/components/catalog/product-card";
+import { Stagger, StaggerItem } from "@/components/ui/reveal";
 import type { ProductCard as ProductCardData } from "@/lib/contracts/catalog";
 
 export function ProductGrid({
@@ -9,14 +10,12 @@ export function ProductGrid({
   hrefForProduct?: (product: ProductCardData) => string;
 }) {
   return (
-    <div className="product-grid">
-      {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          href={hrefForProduct?.(product)}
-        />
+    <Stagger className="product-grid">
+      {products.map((product, index) => (
+        <StaggerItem key={product.id}>
+          <ProductCard product={product} href={hrefForProduct?.(product)} priority={index < 4} />
+        </StaggerItem>
       ))}
-    </div>
+    </Stagger>
   );
 }

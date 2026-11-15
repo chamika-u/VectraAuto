@@ -1,16 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { AlertTriangle, ArrowRight, LockKeyhole, ShoppingBag } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { AlertTriangle, ArrowRight, LockKeyhole, ShoppingBag, Wrench } from "lucide-react";
 import { useCart } from "@/components/cart/cart-provider";
 import { CartEmpty } from "@/components/cart/cart-empty";
 import { CartLineItem } from "@/components/cart/cart-line-item";
 import { CartSummary } from "@/components/cart/cart-summary";
-import { EmptyState } from "@/components/catalog/empty-state";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function CartPage() {
-  const { state } = useCart();
+  const { state, removeItem, updateQuantity } = useCart();
+  const router = useRouter();
 
   if (!state.hydrated) {
     return (
@@ -32,6 +33,21 @@ export default function CartPage() {
 
   const warnings = state.validation?.warnings ?? [];
   const blocked = state.validation?.canCheckout === false;
+
+  const handleFixCart = () => {
+    for (const item of state.items) {
+      if (item.availableStock <= 0) {
+        removeItem(item.productId);
+      } else if (item.quantity > item.availableStock) {
+        updateQuantity(item.productId, item.availableStock);
+      }
+    }
+  };
+
+  const handleFixAndCheckout = () => {
+    handleFixCart();
+    router.push("/checkout");
+  };
 
   return (
     <div className="container section">
@@ -56,16 +72,41 @@ export default function CartPage() {
               <span>Browser storage is unavailable. This cart will last for the current session only.</span>
             </div>
           ) : null}
+
           {warnings.length > 0 ? (
             <div className="alert alert-warning" style={{ marginBottom: 14 }}>
               <AlertTriangle size={16} aria-hidden="true" />
-              <div>
+              <div style={{ flex: 1 }}>
                 {warnings.map((warning) => (
                   <div key={`${warning.code}-${warning.productId ?? "cart"}`}>{warning.message}</div>
                 ))}
+                {blocked && (
+                  <button
+                    type="button"
+                    onClick={handleFixCart}
+                    style={{
+                      marginTop: 8,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 6,
+                      fontSize: "0.8rem",
+                      fontWeight: 700,
+                      color: "#b45309",
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                    }}
+                  >
+                    <Wrench size={13} />
+                    <span>Auto-adjust quantities to available stock</span>
+                  </button>
+                )}
               </div>
             </div>
           ) : null}
+
           <div className="panel" style={{ padding: "6px 20px" }}>
             {state.items.map((item) => (
               <CartLineItem key={item.productId} item={item} />
@@ -77,27 +118,40 @@ export default function CartPage() {
           <div className="panel checkout-card">
             <h2>Order summary</h2>
             <CartSummary items={state.items} />
+
             <div style={{ display: "grid", gap: 10, marginTop: 18 }}>
-              <Link
-                className="button button-primary"
-                href={blocked ? "/cart" : "/checkout"}
-                aria-disabled={blocked}
-                onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-                  if (blocked) event.preventDefault();
-                }}
-              >
-                <LockKeyhole size={15} aria-hidden="true" />
-                Checkout
-              </Link>
+              {blocked ? (
+                <button
+                  type="button"
+                  className="button button-primary"
+                  onClick={handleFixAndCheckout}
+                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}
+                >
+                  <Wrench size={15} aria-hidden="true" />
+                  <span>Fix Stock & Proceed to Checkout</span>
+                </button>
+              ) : (
+                <Link
+                  className="button button-primary"
+                  href="/checkout"
+                  style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8 }}
+                >
+                  <LockKeyhole size={15} aria-hidden="true" />
+                  <span>Proceed to Checkout</span>
+                </Link>
+              )}
+
               <Link className="button button-secondary" href="/products">
                 Keep shopping
               </Link>
             </div>
+
             {blocked ? (
               <p className="field-error" style={{ marginTop: 12 }}>
-                Resolve the stock warnings above before checking out.
+                Some items have stock limits. Click above to auto-adjust and proceed to checkout.
               </p>
             ) : null}
+
             <p className="field-hint" style={{ marginTop: 12 }}>
               Simulated card details stay in your browser. We never send or store them.
             </p>

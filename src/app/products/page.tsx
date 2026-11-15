@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Search, SlidersHorizontal } from "lucide-react";
+import { Search } from "lucide-react";
 import { ProductGrid } from "@/components/catalog/product-grid";
 import { EmptyState } from "@/components/catalog/empty-state";
 import { FitmentFinder } from "@/components/fitment/fitment-finder";
@@ -12,7 +12,6 @@ import {
 } from "@/server/catalog/repository";
 import { getStore } from "@/server/storage/json-store";
 
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Shop parts",
@@ -86,7 +85,6 @@ export default async function ProductsPage({
   return (
     <div className="container">
       <section className="section-tight" style={{ paddingTop: 38 }}>
-        <p className="eyebrow"><SlidersHorizontal size={14} aria-hidden="true" /> Catalog</p>
         <div className="section-heading" style={{ marginBottom: 10 }}>
           <div>
             <h1 className="section-title" style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}>
@@ -121,15 +119,6 @@ export default async function ProductsPage({
               ))}
             </div>
 
-            {vehicle ? (
-              <div className="alert alert-success" style={{ marginBottom: 16 }}>
-                <span>
-                  <strong>{vehicle.displayName}</strong>
-                  <br />
-                  Your saved vehicle.
-                </span>
-              </div>
-            ) : null}
             {hasPartialVehicle ? (
               <div className="alert alert-warning" style={{ marginBottom: 16 }}>
                 <span>Complete make, model, and year to check fitment.</span>

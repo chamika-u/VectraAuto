@@ -52,7 +52,6 @@ export default async function ProductDetailPage({
   const vehicle = resolveVehicleFromParams(catalog.vehicles, query);
   const product = getProductDetail(catalog, runtime, slug, vehicle);
   if (!product) notFound();
-  // After notFound(), product is guaranteed non-null for TypeScript
   const p = product!;
 
   return (

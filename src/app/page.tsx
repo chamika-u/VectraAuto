@@ -3,12 +3,11 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, Search, ShieldCheck, Truck } from "lucide-react";
 import { FitmentFinder } from "@/components/fitment/fitment-finder";
 import { ProductGrid } from "@/components/catalog/product-grid";
-import { Reveal } from "@/components/ui/reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { buildVehicleQuery, resolveVehicleFromParams } from "@/server/catalog/fitment";
 import { getFeaturedProducts } from "@/server/catalog/repository";
 import { getStore } from "@/server/storage/json-store";
 
-export const dynamic = "force-dynamic";
 
 export default async function HomePage({
   searchParams,
@@ -41,7 +40,7 @@ export default async function HomePage({
             </h1>
             <p className="hero-copy">
               Browse a curated catalog of automobile parts, confirm fitment for your vehicle,
-              and check out in minutes. Cash on Delivery and a clearly labelled demo card flow
+              and check out in minutes. Cash on Delivery and a clearly labelled flow
               are ready for the showcase.
             </p>
             <div className="hero-actions">
@@ -54,8 +53,8 @@ export default async function HomePage({
               </Link>
             </div>
             <div className="hero-proof">
-              <span><ShieldCheck size={16} aria-hidden="true" /> Fitment-first catalog</span>
-              <span><Truck size={16} aria-hidden="true" /> Flat LKR 500 delivery</span>
+              <span><ShieldCheck size={16} aria-hidden="true" /> Fitment first catalog</span>
+              <span><Truck size={16} aria-hidden="true" /> Free delivery</span>
               <span><Search size={16} aria-hidden="true" /> Search by part number</span>
             </div>
           </Reveal>
@@ -67,7 +66,8 @@ export default async function HomePage({
         </section>
 
         <section className="section" aria-labelledby="categories-heading">
-          <div className="section-heading">
+          <Reveal>
+            <div className="section-heading">
             <div>
               <h2 id="categories-heading" className="section-title">Shop by system</h2>
               <p className="section-copy">
@@ -78,12 +78,12 @@ export default async function HomePage({
             <Link className="link-arrow" href="/products">
               View catalog <ArrowRight size={15} aria-hidden="true" />
             </Link>
-          </div>
-          <Reveal>
-            <div className="category-grid">
-              {categories.map((category) => (
+            </div>
+          </Reveal>
+          <Stagger className="category-grid">
+            {categories.map((category) => (
+              <StaggerItem key={category.id}>
                 <Link
-                  key={category.id}
                   href={`/products?category=${encodeURIComponent(category.slug)}`}
                   className="category-card"
                 >
@@ -95,13 +95,14 @@ export default async function HomePage({
                     <p>{category.description}</p>
                   </div>
                 </Link>
-              ))}
-            </div>
-          </Reveal>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </section>
 
         <section className="section" aria-labelledby="featured-heading">
-          <div className="section-heading">
+          <Reveal>
+            <div className="section-heading">
             <div>
               <h2 id="featured-heading" className="section-title">
                 {vehicle ? `Popular for your ${vehicle.make}` : "Featured parts"}
@@ -115,7 +116,8 @@ export default async function HomePage({
             <Link className="link-arrow" href={vehicle ? `/products?${vehicleParams.toString()}` : "/products"}>
               Shop all <ArrowRight size={15} aria-hidden="true" />
             </Link>
-          </div>
+            </div>
+          </Reveal>
           <ProductGrid
             products={featured}
             hrefForProduct={(product) => {
@@ -126,14 +128,16 @@ export default async function HomePage({
         </section>
 
         <section className="section-tight" aria-label="Store promise">
-          <div className="section-band">
+          <Reveal>
+            <div className="section-band">
             <h2>Confidence before the checkout.</h2>
             <p>
               Fitment is resolved from prepared vehicle data, stock is rechecked at order placement,
               and every order gets a unique reference. Simulated card details stay in your browser
               and are never sent to the server.
             </p>
-          </div>
+            </div>
+          </Reveal>
         </section>
       </div>
     </>

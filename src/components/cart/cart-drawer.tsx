@@ -21,7 +21,6 @@ export function CartDrawer({
   onOpenChange: (open: boolean) => void;
 }) {
   const { state } = useCart();
-  const warnings = state.validation?.warnings ?? [];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -51,12 +50,6 @@ export function CartDrawer({
                 <div className="alert alert-warning" style={{ marginBottom: 8 }}>
                   <AlertTriangle size={16} aria-hidden="true" />
                   <span>Browser storage is unavailable. Your cart will last for this session only.</span>
-                </div>
-              ) : null}
-              {warnings.length > 0 ? (
-                <div className="alert alert-warning" style={{ marginBottom: 8 }}>
-                  <AlertTriangle size={16} aria-hidden="true" />
-                  <span>{warnings[0].message}</span>
                 </div>
               ) : null}
               {state.items.map((item) => (

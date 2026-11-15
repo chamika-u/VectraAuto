@@ -19,7 +19,7 @@ export function getSettings(): AppSettings {
       process.env.VECTRA_CATALOG_PATH ?? path.join(dataDir, "catalog.seed.json"),
     runtimePath:
       process.env.VECTRA_RUNTIME_STORE_PATH ?? path.join(dataDir, "runtime.store.json"),
-    deliveryFeeCents: Number(process.env.VECTRA_DELIVERY_FEE_CENTS ?? 50000),
+    deliveryFeeCents: Number(process.env.VECTRA_DELIVERY_FEE_CENTS ?? 0),
     retentionDays: Number(process.env.VECTRA_RETENTION_DAYS ?? 30),
   };
 }

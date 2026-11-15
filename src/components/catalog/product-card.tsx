@@ -8,9 +8,11 @@ import type { ProductCard as ProductCardData } from "@/lib/contracts/catalog";
 export function ProductCard({
   product,
   href,
+  priority = false,
 }: {
   product: ProductCardData;
   href?: string;
+  priority?: boolean;
 }) {
   const productHref = href ?? `/products/${product.slug}`;
   return (
@@ -21,6 +23,7 @@ export function ProductCard({
           alt={product.imageAlt}
           fill
           sizes="(max-width: 760px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          priority={priority}
         />
         <span style={{ position: "absolute", top: 10, left: 10 }}>
           <Badge tone={product.availability === "available" ? "dark" : "danger"}>

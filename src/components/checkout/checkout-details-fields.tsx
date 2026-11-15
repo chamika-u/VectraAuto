@@ -1,4 +1,5 @@
-import type { FieldErrors, UseFormRegister } from "react-hook-form";
+import type { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { Sparkles } from "lucide-react";
 import type { CheckoutFormValues } from "@/lib/validation/checkout";
 
 function FieldError({ message }: { message?: string }) {
@@ -9,106 +10,151 @@ function FieldError({ message }: { message?: string }) {
 export function CheckoutDetailsFields({
   register,
   errors,
+  setValue,
 }: {
   register: UseFormRegister<CheckoutFormValues>;
   errors: FieldErrors<CheckoutFormValues>;
+  setValue?: UseFormSetValue<CheckoutFormValues>;
 }) {
+  const handleAutoFillDetails = () => {
+    if (!setValue) return;
+    setValue("fullName", "Kavindu Perera", { shouldValidate: true, shouldDirty: true });
+    setValue("phone", "0771234567", { shouldValidate: true, shouldDirty: true });
+    setValue("email", "kavindu.p@example.lk", { shouldValidate: true, shouldDirty: true });
+    setValue("addressLine1", "No. 45/2, Galle Road", { shouldValidate: true, shouldDirty: true });
+    setValue("city", "Colombo", { shouldValidate: true, shouldDirty: true });
+    setValue("postalCode", "00300", { shouldValidate: true, shouldDirty: true });
+    setValue("notes", "Please call before delivery.", { shouldValidate: true, shouldDirty: true });
+  };
+
   return (
-    <div className="form-grid">
-      <div className="field field-full">
-        <label htmlFor="fullName">Full name</label>
-        <input
-          id="fullName"
-          className="input"
-          autoComplete="name"
-          aria-invalid={Boolean(errors.fullName)}
-          aria-describedby={errors.fullName ? "fullName-error" : undefined}
-          {...register("fullName")}
-        />
-        <span id="fullName-error"><FieldError message={errors.fullName?.message} /></span>
-      </div>
-      <div className="field">
-        <label htmlFor="phone">Phone number</label>
-        <input
-          id="phone"
-          className="input"
-          type="tel"
-          autoComplete="tel"
-          placeholder="0712345678"
-          aria-invalid={Boolean(errors.phone)}
-          aria-describedby={errors.phone ? "phone-error" : undefined}
-          {...register("phone")}
-        />
-        <span id="phone-error"><FieldError message={errors.phone?.message} /></span>
-      </div>
-      <div className="field">
-        <label htmlFor="email">Email address</label>
-        <input
-          id="email"
-          className="input"
-          type="email"
-          autoComplete="email"
-          aria-invalid={Boolean(errors.email)}
-          aria-describedby={errors.email ? "email-error" : undefined}
-          {...register("email")}
-        />
-        <span id="email-error"><FieldError message={errors.email?.message} /></span>
-      </div>
-      <div className="field field-full">
-        <label htmlFor="addressLine1">Delivery address</label>
-        <input
-          id="addressLine1"
-          className="input"
-          autoComplete="address-line1"
-          aria-invalid={Boolean(errors.addressLine1)}
-          aria-describedby={errors.addressLine1 ? "addressLine1-error" : undefined}
-          {...register("addressLine1")}
-        />
-        <span id="addressLine1-error"><FieldError message={errors.addressLine1?.message} /></span>
-      </div>
-      <div className="field field-full">
-        <label htmlFor="addressLine2">Address line 2 <span className="field-hint">(optional)</span></label>
-        <input
-          id="addressLine2"
-          className="input"
-          autoComplete="address-line2"
-          {...register("addressLine2")}
-        />
-      </div>
-      <div className="field">
-        <label htmlFor="city">City</label>
-        <input
-          id="city"
-          className="input"
-          autoComplete="address-level2"
-          aria-invalid={Boolean(errors.city)}
-          aria-describedby={errors.city ? "city-error" : undefined}
-          {...register("city")}
-        />
-        <span id="city-error"><FieldError message={errors.city?.message} /></span>
-      </div>
-      <div className="field">
-        <label htmlFor="postalCode">Postal code</label>
-        <input
-          id="postalCode"
-          className="input"
-          inputMode="numeric"
-          autoComplete="postal-code"
-          placeholder="00300"
-          aria-invalid={Boolean(errors.postalCode)}
-          aria-describedby={errors.postalCode ? "postalCode-error" : undefined}
-          {...register("postalCode")}
-        />
-        <span id="postalCode-error"><FieldError message={errors.postalCode?.message} /></span>
-      </div>
-      <div className="field field-full">
-        <label htmlFor="notes">Delivery notes <span className="field-hint">(optional)</span></label>
-        <textarea
-          id="notes"
-          className="textarea"
-          placeholder="Gate code, landmark, or a preferred call time"
-          {...register("notes")}
-        />
+    <div>
+      {setValue && (
+        <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 12 }}>
+          <button
+            type="button"
+            onClick={handleAutoFillDetails}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              padding: "4px 10px",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              borderRadius: 8,
+              background: "#f1f5f9",
+              color: "#334155",
+              border: "1px solid #cbd5e1",
+              cursor: "pointer",
+            }}
+          >
+            <Sparkles size={13} className="text-emerald-600" />
+            <span>Auto-fill Sample Address</span>
+          </button>
+        </div>
+      )}
+
+      <div className="form-grid">
+        <div className="field field-full">
+          <label htmlFor="fullName">Full name</label>
+          <input
+            id="fullName"
+            className="input"
+            autoComplete="name"
+            placeholder="e.g. Kavindu Perera"
+            aria-invalid={Boolean(errors.fullName)}
+            aria-describedby={errors.fullName ? "fullName-error" : undefined}
+            {...register("fullName")}
+          />
+          <span id="fullName-error"><FieldError message={errors.fullName?.message} /></span>
+        </div>
+        <div className="field">
+          <label htmlFor="phone">Phone number</label>
+          <input
+            id="phone"
+            className="input"
+            type="tel"
+            autoComplete="tel"
+            placeholder="0771234567"
+            aria-invalid={Boolean(errors.phone)}
+            aria-describedby={errors.phone ? "phone-error" : undefined}
+            {...register("phone")}
+          />
+          <span id="phone-error"><FieldError message={errors.phone?.message} /></span>
+        </div>
+        <div className="field">
+          <label htmlFor="email">Email address</label>
+          <input
+            id="email"
+            className="input"
+            type="email"
+            autoComplete="email"
+            placeholder="kavindu@example.com"
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "email-error" : undefined}
+            {...register("email")}
+          />
+          <span id="email-error"><FieldError message={errors.email?.message} /></span>
+        </div>
+        <div className="field field-full">
+          <label htmlFor="addressLine1">Delivery address</label>
+          <input
+            id="addressLine1"
+            className="input"
+            autoComplete="address-line1"
+            placeholder="Street address or building"
+            aria-invalid={Boolean(errors.addressLine1)}
+            aria-describedby={errors.addressLine1 ? "addressLine1-error" : undefined}
+            {...register("addressLine1")}
+          />
+          <span id="addressLine1-error"><FieldError message={errors.addressLine1?.message} /></span>
+        </div>
+        <div className="field field-full">
+          <label htmlFor="addressLine2">Address line 2 <span className="field-hint">(optional)</span></label>
+          <input
+            id="addressLine2"
+            className="input"
+            autoComplete="address-line2"
+            placeholder="Apartment, suite, unit (optional)"
+            {...register("addressLine2")}
+          />
+        </div>
+        <div className="field">
+          <label htmlFor="city">City</label>
+          <input
+            id="city"
+            className="input"
+            autoComplete="address-level2"
+            placeholder="e.g. Colombo"
+            aria-invalid={Boolean(errors.city)}
+            aria-describedby={errors.city ? "city-error" : undefined}
+            {...register("city")}
+          />
+          <span id="city-error"><FieldError message={errors.city?.message} /></span>
+        </div>
+        <div className="field">
+          <label htmlFor="postalCode">Postal code</label>
+          <input
+            id="postalCode"
+            className="input"
+            inputMode="numeric"
+            autoComplete="postal-code"
+            placeholder="00300"
+            aria-invalid={Boolean(errors.postalCode)}
+            aria-describedby={errors.postalCode ? "postalCode-error" : undefined}
+            {...register("postalCode")}
+          />
+          <span id="postalCode-error"><FieldError message={errors.postalCode?.message} /></span>
+        </div>
+        <div className="field field-full">
+          <label htmlFor="notes">Delivery notes <span className="field-hint">(optional)</span></label>
+          <textarea
+            id="notes"
+            className="textarea"
+            placeholder="Gate code, landmark, or a preferred call time"
+            {...register("notes")}
+          />
+        </div>
       </div>
     </div>
   );

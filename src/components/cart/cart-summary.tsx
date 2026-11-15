@@ -19,7 +19,9 @@ export function CartSummary({
       </div>
       <div className="summary-row">
         <span>Delivery</span>
-        <span>{formatLkr(deliveryFeeCents)}</span>
+        <span style={deliveryFeeCents === 0 ? { color: "#059669", fontWeight: 700 } : undefined}>
+          {deliveryFeeCents > 0 ? formatLkr(deliveryFeeCents) : "FREE"}
+        </span>
       </div>
       <div className="summary-row total">
         <span>Total</span>
