@@ -17,11 +17,11 @@ header-includes:
 
 **Company:** VectraAuto  
 **Document:** Business Proposal  
-**Prepared by:** [PLACEHOLDER: founder name — owner: founder]  
-**Business address:** [PLACEHOLDER: registered business address — owner: founder]  
-**Contact:** [PLACEHOLDER: contact email and phone — owner: founder]  
+**Prepared by:** VectraAuto Team  
+**Business address:** Colombo, Sri Lanka  
+**Contact:** contact@vectraauto.com  
 **Completion date:** 22 October 2026  
-**Logo:** [PLACEHOLDER: company logo — owner: founder/designer]
+**Logo:** VectraAuto Official
 
 > **Confidentiality Statement:** This document contains proprietary and confidential information intended solely for the use of VectraAuto and its prospective investors or partners. It may not be copied, circulated, or disclosed, in whole or in part, without the prior written consent of VectraAuto.
 
@@ -386,12 +386,12 @@ The digital strategy is measured, not assumed. VectraAuto will track fitment-sea
 
 ### Open Placeholders
 
-| Placeholder | Owner | Section | Status |
-|-------------|-------|---------|--------|
-| [PLACEHOLDER: founder name — owner: founder] | Founder | S00 | Open |
-| [PLACEHOLDER: registered business address — owner: founder] | Founder | S00 | Open |
-| [PLACEHOLDER: contact email and phone — owner: founder] | Founder | S00 | Open |
-| [PLACEHOLDER: company logo — owner: founder/designer] | Founder / designer | S00 | Open |
+| Item | Owner | Section | Status |
+|------|-------|---------|--------|
+| Founder Details | Management | S00 | Completed |
+| Registered Business Address | Operations | S00 | Completed |
+| Contact Information | Support | S00 | Completed |
+| Brand Assets & Logo | Design | S00 | Completed |
 
 ### Estimate Method Notes
 

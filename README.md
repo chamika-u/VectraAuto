@@ -189,7 +189,6 @@ VectraAuto/
 │   └── runtime.store.json   # Mutable runtime data store (created on seed)
 ├── public/                  # Static assets (images, icons, product media)
 ├── scripts/                 # Maintenance, seeding, and retention scripts
-├── specs/                   # Product requirements, specifications, and architecture
 ├── src/
 │   ├── app/                 # Next.js App Router pages and API route handlers
 │   ├── components/          # React UI components (Cart, Catalog, Fitment, Checkout)
