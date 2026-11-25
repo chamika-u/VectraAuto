@@ -1,3 +1,4 @@
+import os from "node:os";
 import path from "node:path";
 
 export type AppSettings = {
@@ -9,14 +10,22 @@ export type AppSettings = {
 };
 
 export function getSettings(): AppSettings {
+  const isVercel = Boolean(process.env.VERCEL);
+  const defaultDataDir = isVercel
+    ? path.join(os.tmpdir(), "vectra-data")
+    : path.join(process.cwd(), "data");
+
   const dataDir = process.env.VECTRA_DATA_DIR
     ? path.resolve(process.env.VECTRA_DATA_DIR)
-    : path.join(process.cwd(), "data");
+    : defaultDataDir;
 
   return {
     dataDir,
     catalogPath:
-      process.env.VECTRA_CATALOG_PATH ?? path.join(dataDir, "catalog.seed.json"),
+      process.env.VECTRA_CATALOG_PATH ??
+      (isVercel
+        ? path.join(process.cwd(), "data", "catalog.seed.json")
+        : path.join(dataDir, "catalog.seed.json")),
     runtimePath:
       process.env.VECTRA_RUNTIME_STORE_PATH ?? path.join(dataDir, "runtime.store.json"),
     deliveryFeeCents: Number(process.env.VECTRA_DELIVERY_FEE_CENTS ?? 0),

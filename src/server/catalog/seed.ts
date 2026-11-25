@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { catalogSeedSchema, type CatalogSeed } from "@/lib/contracts/catalog";
 import { getSettings } from "@/server/config";
+import seedFallback from "../../../data/catalog.seed.json";
 
 export class CatalogValidationError extends Error {
   constructor(message: string) {
@@ -73,7 +74,12 @@ export function validateCatalogSeed(raw: unknown): CatalogSeed {
 }
 
 export async function loadCatalogSeed(catalogPath = getSettings().catalogPath): Promise<CatalogSeed> {
-  const content = await readFile(catalogPath, "utf8");
-  const raw = JSON.parse(content) as unknown;
-  return validateCatalogSeed(raw);
+  try {
+    const content = await readFile(catalogPath, "utf8");
+    const raw = JSON.parse(content) as unknown;
+    return validateCatalogSeed(raw);
+  } catch {
+    // Fall back to the bundled catalog seed if the disk path is unavailable (e.g. on Vercel)
+    return validateCatalogSeed(seedFallback);
+  }
 }
