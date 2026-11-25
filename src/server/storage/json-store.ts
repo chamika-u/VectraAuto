@@ -6,7 +6,6 @@ import type { RuntimeStore } from "@/lib/contracts/orders";
 import { getSettings, type AppSettings } from "@/server/config";
 import { loadCatalogSeed } from "@/server/catalog/seed";
 import { purgeExpiredData } from "@/server/retention/purge";
-import runtimeFallback from "../../../data/runtime.store.json";
 
 export type StoreSnapshot = {
   catalog: CatalogSeed;
@@ -151,11 +150,13 @@ export class JsonStore {
         throw new Error("Runtime store has an unsupported shape.");
       }
       runtime = parsed;
+      inMemoryStore = runtime;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
         throw error;
       }
-      runtime = isRuntimeStore(runtimeFallback) ? runtimeFallback : buildRuntimeStore(catalog);
+      runtime = inMemoryStore ?? buildRuntimeStore(catalog);
+      inMemoryStore = runtime;
       try {
         await this.writeRuntimeUnlocked(runtime);
       } catch {
@@ -167,6 +168,7 @@ export class JsonStore {
     const purged = purgeExpiredData(runtime, new Date(), catalog.retentionDays);
     if (purged.removedOrders > 0 || purged.removedIdempotency > 0) {
       runtime = purged.store;
+      inMemoryStore = runtime;
       try {
         await this.writeRuntimeUnlocked(runtime);
       } catch {
@@ -177,6 +179,7 @@ export class JsonStore {
   }
 
   private async writeRuntimeUnlocked(runtime: RuntimeStore): Promise<void> {
+    inMemoryStore = runtime;
     try {
       await mkdir(path.dirname(this.settings.runtimePath), { recursive: true });
       const content = `${JSON.stringify(runtime, null, 2)}\n`;
@@ -201,6 +204,7 @@ export class JsonStore {
 }
 
 let defaultStore: JsonStore | null = null;
+let inMemoryStore: RuntimeStore | null = null;
 
 export function getStore(): JsonStore {
   defaultStore ??= new JsonStore();
@@ -209,4 +213,5 @@ export function getStore(): JsonStore {
 
 export function setStoreForTests(store: JsonStore | null): void {
   defaultStore = store;
+  inMemoryStore = null;
 }
