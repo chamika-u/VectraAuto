@@ -226,6 +226,17 @@ export function CheckoutClient() {
           await new Promise((r) => setTimeout(r, 700));
         }
 
+        if (typeof window !== "undefined" && body.order) {
+          try {
+            sessionStorage.setItem(`vectra_order_${body.order.reference}`, JSON.stringify(body.order));
+            sessionStorage.setItem("vectra_last_order", JSON.stringify(body.order));
+            localStorage.setItem(`vectra_order_${body.order.reference}`, JSON.stringify(body.order));
+            localStorage.setItem("vectra_last_order", JSON.stringify(body.order));
+          } catch {
+            // ignore quota errors
+          }
+        }
+
         clearCart();
         clearCheckoutKey();
         router.push(`/orders/${body.order.reference}`);
