@@ -33,7 +33,9 @@ export function ProductCard({
       </Link>
       <div className="product-body">
         <div className="product-meta">
-          <CompatibilityBadge compatibility={product.compatibility} compact />
+          {product.compatibility === "compatible" && (
+            <CompatibilityBadge compatibility={product.compatibility} compact />
+          )}
         </div>
         <h3 className="product-name">
           <Link href={productHref}>{product.name}</Link>

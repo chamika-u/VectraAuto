@@ -71,8 +71,7 @@ export default async function HomePage({
             <div>
               <h2 id="categories-heading" className="section-title">Shop by system</h2>
               <p className="section-copy">
-                Start with the system you need. Every product page shows stock, specifications,
-                and a clear compatibility result for your saved vehicle.
+                Find the exact parts you need by system complete with live stock status and vehicle compatibility checks.
               </p>
             </div>
             <Link className="link-arrow" href="/products">
@@ -125,19 +124,6 @@ export default async function HomePage({
               return `/products/${product.slug}${query ? `?${query}` : ""}`;
             }}
           />
-        </section>
-
-        <section className="section-tight" aria-label="Store promise">
-          <Reveal>
-            <div className="section-band">
-            <h2>Confidence before the checkout.</h2>
-            <p>
-              Fitment is resolved from prepared vehicle data, stock is rechecked at order placement,
-              and every order gets a unique reference. Simulated card details stay in your browser
-              and are never sent to the server.
-            </p>
-            </div>
-          </Reveal>
         </section>
       </div>
     </>

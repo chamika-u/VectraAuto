@@ -34,28 +34,25 @@ function isCartItem(value: unknown): value is CartItem {
 }
 
 function readStoredCart(): { items: CartItem[]; updatedAt: string; storageAvailable: boolean } {
-  if (typeof window === "undefined") {
-    return { items: [], updatedAt: new Date().toISOString(), storageAvailable: true };
+  if (typeof window !== "undefined") {
+    try {
+      window.localStorage.removeItem(CART_STORAGE_KEY);
+    } catch {
+      // ignore
+    }
   }
-  try {
-    const raw = window.localStorage.getItem(CART_STORAGE_KEY);
-    if (!raw) return { items: [], updatedAt: new Date().toISOString(), storageAvailable: true };
-    const parsed = JSON.parse(raw) as { items?: unknown; updatedAt?: unknown };
-    const items = Array.isArray(parsed.items) ? parsed.items.filter(isCartItem) : [];
-    return {
-      items,
-      updatedAt: typeof parsed.updatedAt === "string" ? parsed.updatedAt : new Date().toISOString(),
-      storageAvailable: true,
-    };
-  } catch {
-    return { items: [], updatedAt: new Date().toISOString(), storageAvailable: false };
-  }
+  return { items: [], updatedAt: new Date().toISOString(), storageAvailable: true };
 }
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, undefined, createInitialCartState);
 
   useEffect(() => {
+    try {
+      window.localStorage.removeItem(CART_STORAGE_KEY);
+    } catch {
+      // ignore
+    }
     const stored = readStoredCart();
     dispatch({ type: "hydrate", payload: stored });
   }, []);
@@ -63,14 +60,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!state.hydrated) return;
     try {
-      window.localStorage.setItem(
-        CART_STORAGE_KEY,
-        JSON.stringify({ items: state.items, updatedAt: state.updatedAt }),
-      );
+      window.localStorage.removeItem(CART_STORAGE_KEY);
     } catch {
       dispatch({ type: "markStorageUnavailable" });
     }
-  }, [state.hydrated, state.items, state.updatedAt]);
+  }, [state.hydrated]);
 
   const addItem = useCallback((item: CartItem) => dispatch({ type: "add", payload: { item } }), []);
   const updateQuantity = useCallback(

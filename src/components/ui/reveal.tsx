@@ -16,7 +16,7 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0, y: 22 }}
+      initial={reduce ? false : { opacity: 0, y: 12 }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20px" }}
       transition={{ duration: MOTION.base, ease: MOTION.ease, delay }}
@@ -38,11 +38,10 @@ export function Stagger({
     <motion.div
       className={className}
       initial={reduce ? false : "hidden"}
-      whileInView={reduce ? undefined : "show"}
-      viewport={{ once: true, margin: "-20px" }}
+      animate={reduce ? undefined : "show"}
       variants={{
         hidden: {},
-        show: { transition: { staggerChildren: 0.08, delayChildren: 0.04 } },
+        show: { transition: { staggerChildren: 0.04, delayChildren: 0.02 } },
       }}
     >
       {children}
@@ -65,11 +64,11 @@ export function StaggerItem({
         reduce
           ? undefined
           : {
-              hidden: { opacity: 0, y: 20 },
+              hidden: { opacity: 0, y: 8 },
               show: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: MOTION.base, ease: MOTION.ease },
+                transition: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
               },
             }
       }

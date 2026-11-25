@@ -148,15 +148,9 @@ export default function AdminDashboardPage() {
           </Link>
           <Link
             href="/admin/products"
-            className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
-          >
-            Adjust Stock
-          </Link>
-          <Link
-            href="/admin/settings"
             className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-bold transition-colors"
           >
-            Settings & Reset
+            Adjust Stock
           </Link>
         </div>
       </div>

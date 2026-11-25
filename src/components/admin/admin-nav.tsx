@@ -8,7 +8,6 @@ import {
   ShoppingBag,
   Package,
   Car,
-  Settings,
   ArrowLeft,
   Shield,
   Loader2,
@@ -37,12 +36,6 @@ const NAV_ITEMS = [
     href: "/admin/vehicles",
     label: "Vehicles & Fitment",
     icon: Car,
-    exact: false,
-  },
-  {
-    href: "/admin/settings",
-    label: "System & Settings",
-    icon: Settings,
     exact: false,
   },
 ];

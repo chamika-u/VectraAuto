@@ -4,7 +4,6 @@ import { Search } from "lucide-react";
 import { ProductGrid } from "@/components/catalog/product-grid";
 import { EmptyState } from "@/components/catalog/empty-state";
 import { FitmentFinder } from "@/components/fitment/fitment-finder";
-import { Reveal } from "@/components/ui/reveal";
 import { buildVehicleQuery, resolveVehicleFromParams } from "@/server/catalog/fitment";
 import {
   getCategoryBySlug,
@@ -57,7 +56,7 @@ export default async function ProductsPage({
     if (slug) next.set("category", slug);
     if (query) next.set("q", query);
     vehicleParams.forEach((value, key) => next.set(key, value));
-    if (compatibleOnly) next.set("compatible", "1");
+    // compatible filter is NOT carried over when switching categories
     const value = next.toString();
     return value ? `/products?${value}` : "/products";
   }
@@ -184,16 +183,14 @@ export default async function ProductsPage({
               actionHref="/products"
             />
           ) : (
-            <Reveal>
-              <ProductGrid
-                products={products}
-                hrefForProduct={(product) => {
-                  const next = new URLSearchParams(vehicleParams);
-                  const value = next.toString();
-                  return `/products/${product.slug}${value ? `?${value}` : ""}`;
-                }}
-              />
-            </Reveal>
+            <ProductGrid
+              products={products}
+              hrefForProduct={(product) => {
+                const next = new URLSearchParams(vehicleParams);
+                const value = next.toString();
+                return `/products/${product.slug}${value ? `?${value}` : ""}`;
+              }}
+            />
           )}
         </section>
       </div>
