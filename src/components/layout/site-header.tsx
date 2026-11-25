@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CartButton } from "@/components/cart/cart-button";
-import { ShieldCheck, Store } from "lucide-react";
+import { Store } from "lucide-react";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -18,12 +18,13 @@ export function SiteHeader() {
             <Link href="/" className="brand" aria-label="VectraAuto home">
               <Image
                 src="/vectraauto-logo.jpg"
-                alt="VA Autocare"
+                alt="VectraAuto"
                 width={112}
                 height={80}
                 className="brand-logo"
                 priority
               />
+              <span>VectraAuto</span>
             </Link>
           </div>
 
@@ -47,22 +48,15 @@ export function SiteHeader() {
         <Link href="/" className="brand" aria-label="VectraAuto home">
           <Image
             src="/vectraauto-logo.jpg"
-            alt="VA Autocare"
+            alt="VectraAuto"
             width={112}
             height={80}
             className="brand-logo"
             priority
           />
+          <span>VectraAuto</span>
         </Link>
         <div className="header-actions flex items-center gap-3">
-          <Link
-            href="/admin"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-xl bg-stone-200/70 hover:bg-red-100 text-stone-700 hover:text-red-900 transition-colors"
-            title="Open Admin Control Center"
-          >
-            <ShieldCheck className="w-4 h-4 text-red-700" />
-            <span className="hidden sm:inline">Admin</span>
-          </Link>
           <CartButton />
         </div>
       </div>

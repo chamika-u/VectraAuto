@@ -76,7 +76,7 @@ export default async function ProductsPage({
     categorySlug && !category
       ? "The category link may be outdated. Browse the full catalog to continue."
       : query
-        ? `No parts match “${query}”. Try a different name, part number, or SKU.`
+        ? `No parts match “${query}”. Try a different name or SKU.`
         : compatibleOnly
           ? "No compatible parts are available for this vehicle yet. Change or clear the vehicle to browse everything."
           : "There are no parts in this view yet. Clear the filters to see the full catalog.";
@@ -87,11 +87,12 @@ export default async function ProductsPage({
         <div className="section-heading" style={{ marginBottom: 10 }}>
           <div>
             <h1 className="section-title" style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}>
-              Parts that fit the way you drive.
+              {category ? category.name : "Parts that fit the way you drive."}
             </h1>
             <p className="section-copy">
-              Use search, categories, or the fitment finder. Compatibility results update from the
-              prepared vehicle data.
+              {category
+                ? category.description
+                : "Use search, categories, or the fitment finder. Compatibility results update from the prepared vehicle data."}
             </p>
           </div>
         </div>
@@ -102,7 +103,13 @@ export default async function ProductsPage({
           <div className="panel filter-panel" aria-label="Catalog filters">
             <h2>Browse</h2>
             <div className="filter-group">
-              <Link className="filter-link" href={categoryHref()} data-active={!categorySlug}>
+              <Link
+                className="filter-link"
+                href={categoryHref()}
+                data-active={!categorySlug}
+                scroll={false}
+                prefetch={true}
+              >
                 <span>All parts</span>
                 <span>{catalog.products.filter((product) => product.status === "active").length}</span>
               </Link>
@@ -112,6 +119,8 @@ export default async function ProductsPage({
                   className="filter-link"
                   href={categoryHref(entry.slug)}
                   data-active={entry.slug === categorySlug}
+                  scroll={false}
+                  prefetch={true}
                 >
                   <span>{entry.name}</span>
                 </Link>
@@ -149,7 +158,7 @@ export default async function ProductsPage({
                 type="search"
                 name="q"
                 defaultValue={query}
-                placeholder="Search name, part number, or SKU"
+                placeholder="Search name or SKU"
               />
               <button className="button button-primary" type="submit">
                 <Search size={16} aria-hidden="true" />
@@ -166,6 +175,8 @@ export default async function ProductsPage({
               <Link
                 className={`button button-sm ${compatibleOnly ? "button-primary" : "button-secondary"}`}
                 href={compatibleHref()}
+                scroll={false}
+                prefetch={true}
               >
                 {compatibleOnly ? "Showing compatible only" : "Show compatible only"}
               </Link>

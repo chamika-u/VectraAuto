@@ -2,27 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Search, ShieldCheck, Truck } from "lucide-react";
 import { FitmentFinder } from "@/components/fitment/fitment-finder";
-import { ProductGrid } from "@/components/catalog/product-grid";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
-import { buildVehicleQuery, resolveVehicleFromParams } from "@/server/catalog/fitment";
-import { getFeaturedProducts } from "@/server/catalog/repository";
 import { getStore } from "@/server/storage/json-store";
 
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) {
-  const params = await searchParams;
-  const stringParams = Object.fromEntries(
-    Object.entries(params).map(([key, value]) => [key, Array.isArray(value) ? value[0] : value]),
-  );
-  const { catalog, runtime } = await getStore().readSnapshot();
-  const vehicle = resolveVehicleFromParams(catalog.vehicles, stringParams);
-  const featured = getFeaturedProducts(catalog, runtime, vehicle, 8);
+export default async function HomePage() {
+  const { catalog } = await getStore().readSnapshot();
   const categories = [...catalog.categories].sort((a, b) => a.sortOrder - b.sortOrder);
-  const vehicleParams = vehicle ? buildVehicleQuery(vehicle) : new URLSearchParams();
 
   return (
     <>
@@ -48,14 +34,11 @@ export default async function HomePage({
                 Shop all parts
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
-              <Link className="button button-secondary" href="#fitment">
-                Find my fitment
-              </Link>
             </div>
             <div className="hero-proof">
               <span><ShieldCheck size={16} aria-hidden="true" /> Fitment first catalog</span>
               <span><Truck size={16} aria-hidden="true" /> Free delivery</span>
-              <span><Search size={16} aria-hidden="true" /> Search by part number</span>
+              <span><Search size={16} aria-hidden="true" /> Instant catalog search</span>
             </div>
           </Reveal>
           <Reveal delay={0.08} className="fitment-anchor">
@@ -97,33 +80,6 @@ export default async function HomePage({
               </StaggerItem>
             ))}
           </Stagger>
-        </section>
-
-        <section className="section" aria-labelledby="featured-heading">
-          <Reveal>
-            <div className="section-heading">
-            <div>
-              <h2 id="featured-heading" className="section-title">
-                {vehicle ? `Popular for your ${vehicle.make}` : "Featured parts"}
-              </h2>
-              <p className="section-copy">
-                {vehicle
-                  ? `Compatibility is checked against your saved ${vehicle.displayName}.`
-                  : "A selection of parts our showcase customers ask for most."}
-              </p>
-            </div>
-            <Link className="link-arrow" href={vehicle ? `/products?${vehicleParams.toString()}` : "/products"}>
-              Shop all <ArrowRight size={15} aria-hidden="true" />
-            </Link>
-            </div>
-          </Reveal>
-          <ProductGrid
-            products={featured}
-            hrefForProduct={(product) => {
-              const query = vehicleParams.toString();
-              return `/products/${product.slug}${query ? `?${query}` : ""}`;
-            }}
-          />
         </section>
       </div>
     </>

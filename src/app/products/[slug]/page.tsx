@@ -87,10 +87,6 @@ export default async function ProductDetailPage({
 
           <div className="buy-box">
             <div className="buy-row">
-              <div>
-                <p className="field-hint" style={{ marginBottom: 5 }}>Part number</p>
-                <p style={{ margin: 0, fontWeight: 700 }}>{p.partNumber}</p>
-              </div>
               <span className="stock-note">
                 <span className={`stock-dot ${p.availability === "available" ? "" : "out"}`} />
                 {p.availability === "available" ? "Ready to order" : "Currently unavailable"}

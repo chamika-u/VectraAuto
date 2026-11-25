@@ -113,7 +113,6 @@ export function AdminNav() {
             </span>
             <span>Store Online</span>
           </div>
-          <p className="text-xs text-stone-500 mt-1">JSON Atomic Runtime</p>
         </div>
 
         <Link href="/" prefetch={true} className="admin-return-link">
