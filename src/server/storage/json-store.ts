@@ -6,6 +6,7 @@ import type { RuntimeStore } from "@/lib/contracts/orders";
 import { getSettings, type AppSettings } from "@/server/config";
 import { loadCatalogSeed } from "@/server/catalog/seed";
 import { purgeExpiredData } from "@/server/retention/purge";
+import runtimeFallback from "../../../data/runtime.store.json";
 
 export type StoreSnapshot = {
   catalog: CatalogSeed;
@@ -154,30 +155,47 @@ export class JsonStore {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
         throw error;
       }
-      runtime = buildRuntimeStore(catalog);
-      await this.writeRuntimeUnlocked(runtime);
+      runtime = isRuntimeStore(runtimeFallback) ? runtimeFallback : buildRuntimeStore(catalog);
+      try {
+        await this.writeRuntimeUnlocked(runtime);
+      } catch {
+        // Silently tolerate read-only environments
+      }
       return runtime;
     }
 
     const purged = purgeExpiredData(runtime, new Date(), catalog.retentionDays);
     if (purged.removedOrders > 0 || purged.removedIdempotency > 0) {
       runtime = purged.store;
-      await this.writeRuntimeUnlocked(runtime);
+      try {
+        await this.writeRuntimeUnlocked(runtime);
+      } catch {
+        // Silently tolerate read-only environments
+      }
     }
     return runtime;
   }
 
   private async writeRuntimeUnlocked(runtime: RuntimeStore): Promise<void> {
-    await mkdir(path.dirname(this.settings.runtimePath), { recursive: true });
-    const content = `${JSON.stringify(runtime, null, 2)}\n`;
-    const tempPath = `${this.settings.runtimePath}.${process.pid}.${Date.now()}.tmp`;
-    await writeFile(tempPath, content, "utf8");
     try {
-      await rename(tempPath, this.settings.runtimePath);
-    } catch {
-      // Fallback for Windows / OneDrive file locks where rename throws EPERM
-      await writeFile(this.settings.runtimePath, content, "utf8");
-      await rm(tempPath, { force: true }).catch(() => {});
+      await mkdir(path.dirname(this.settings.runtimePath), { recursive: true });
+      const content = `${JSON.stringify(runtime, null, 2)}\n`;
+      const tempPath = `${this.settings.runtimePath}.${process.pid}.${Date.now()}.tmp`;
+      await writeFile(tempPath, content, "utf8");
+      try {
+        await rename(tempPath, this.settings.runtimePath);
+      } catch {
+        // Fallback for Windows / OneDrive file locks where rename throws EPERM
+        await writeFile(this.settings.runtimePath, content, "utf8");
+        await rm(tempPath, { force: true }).catch(() => {});
+      }
+    } catch (error) {
+      const code = (error as NodeJS.ErrnoException)?.code;
+      if (code === "EROFS" || code === "EACCES") {
+        // On read-only serverless filesystems (e.g. Vercel Lambda /var/task), avoid crashing
+        return;
+      }
+      throw error;
     }
   }
 }
