@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     default: "VectraAuto | Quality automobile parts in Sri Lanka",
     template: "%s | VectraAuto",
   },
+  icons: {
+    icon: "/vectraauto-logo.jpg",
+    shortcut: "/vectraauto-logo.jpg",
+    apple: "/vectraauto-logo.jpg",
+  },
   description:
     "Discover compatible automobile parts by vehicle, build your cart, and check out with Cash on Delivery or a clearly labelled demo card flow.",
   applicationName: "VectraAuto",
@@ -29,6 +34,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/vectraauto-logo.jpg" />
+        <link rel="apple-touch-icon" href="/vectraauto-logo.jpg" />
+      </head>
       <body>
         <CartProvider>
           <a className="sr-only" href="#main-content">

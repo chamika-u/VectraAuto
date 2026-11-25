@@ -48,7 +48,6 @@ export class JsonStore {
   private readonly mutex = new Mutex();
   private readonly settings: AppSettings;
   private catalogPromise: Promise<CatalogSeed> | null = null;
-  private cachedRuntime: RuntimeStore | null = null;
 
   constructor(options: StoreOptions = {}) {
     const base = getSettings();
@@ -74,7 +73,6 @@ export class JsonStore {
 
   async initialize(options: { reset?: boolean } = {}): Promise<StoreSnapshot> {
     return this.mutex.runExclusive(async () => {
-      this.cachedRuntime = null;
       const catalog = await this.getCatalog();
       await mkdir(this.settings.dataDir, { recursive: true });
       if (options.reset) {
@@ -88,13 +86,7 @@ export class JsonStore {
 
   async readSnapshot(): Promise<StoreSnapshot> {
     const catalog = await this.getCatalog();
-    if (this.cachedRuntime) {
-      return { catalog, runtime: this.cachedRuntime };
-    }
     return this.mutex.runExclusive(async () => {
-      if (this.cachedRuntime) {
-        return { catalog, runtime: this.cachedRuntime };
-      }
       const runtime = await this.loadRuntimeUnlocked(catalog);
       return { catalog, runtime };
     });
@@ -116,7 +108,6 @@ export class JsonStore {
 
   async reset(): Promise<void> {
     await this.mutex.runExclusive(async () => {
-      this.cachedRuntime = null;
       await rm(this.settings.runtimePath, { force: true });
     });
   }
@@ -151,9 +142,6 @@ export class JsonStore {
   }
 
   private async loadRuntimeUnlocked(catalog: CatalogSeed): Promise<RuntimeStore> {
-    if (this.cachedRuntime) {
-      return this.cachedRuntime;
-    }
     let runtime: RuntimeStore;
     try {
       const content = await readFile(this.settings.runtimePath, "utf8");
@@ -168,7 +156,6 @@ export class JsonStore {
       }
       runtime = buildRuntimeStore(catalog);
       await this.writeRuntimeUnlocked(runtime);
-      this.cachedRuntime = runtime;
       return runtime;
     }
 
@@ -177,16 +164,21 @@ export class JsonStore {
       runtime = purged.store;
       await this.writeRuntimeUnlocked(runtime);
     }
-    this.cachedRuntime = runtime;
     return runtime;
   }
 
   private async writeRuntimeUnlocked(runtime: RuntimeStore): Promise<void> {
-    this.cachedRuntime = runtime;
     await mkdir(path.dirname(this.settings.runtimePath), { recursive: true });
+    const content = `${JSON.stringify(runtime, null, 2)}\n`;
     const tempPath = `${this.settings.runtimePath}.${process.pid}.${Date.now()}.tmp`;
-    await writeFile(tempPath, `${JSON.stringify(runtime, null, 2)}\n`, "utf8");
-    await rename(tempPath, this.settings.runtimePath);
+    await writeFile(tempPath, content, "utf8");
+    try {
+      await rename(tempPath, this.settings.runtimePath);
+    } catch {
+      // Fallback for Windows / OneDrive file locks where rename throws EPERM
+      await writeFile(this.settings.runtimePath, content, "utf8");
+      await rm(tempPath, { force: true }).catch(() => {});
+    }
   }
 }
 

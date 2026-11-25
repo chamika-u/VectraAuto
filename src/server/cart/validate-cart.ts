@@ -81,20 +81,6 @@ export async function validateCart(
       });
     }
 
-    if (compatibility === "incompatible") {
-      warnings.push({
-        code: "FITMENT_INCOMPATIBLE",
-        productId: product.id,
-        message: `${product.name} is not listed for the selected vehicle.`,
-      });
-    } else if (compatibility === "unknown") {
-      warnings.push({
-        code: "FITMENT_UNKNOWN",
-        productId: product.id,
-        message: `Fitment for ${product.name} is unknown for the selected vehicle.`,
-      });
-    }
-
     return {
       productId: product.id,
       slug: product.slug,

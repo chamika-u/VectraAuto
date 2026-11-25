@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AlertTriangle, ArrowLeft, CheckCircle2, Package } from "lucide-react";
+import { ArrowLeft, Package } from "lucide-react";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { ProductGallery } from "@/components/catalog/product-gallery";
 import { CompatibilityBadge } from "@/components/fitment/compatibility-badge";
@@ -84,26 +84,9 @@ export default async function ProductDetailPage({
             <span className="badge badge-neutral">SKU {p.sku}</span>
           </div>
 
-          {p.compatibilityNote ? (
-            <div
-              className={`alert ${p.compatibility === "compatible" ? "alert-success" : "alert-warning"}`}
-              style={{ marginTop: 18 }}
-            >
-              {p.compatibility === "compatible" ? (
-                <CheckCircle2 size={16} aria-hidden="true" />
-              ) : (
-                <AlertTriangle size={16} aria-hidden="true" />
-              )}
-              <span>{p.compatibilityNote}</span>
-            </div>
-          ) : null}
 
           <div className="buy-box">
             <div className="buy-row">
-              <div>
-                <p className="field-hint" style={{ marginBottom: 5 }}>Part number</p>
-                <p style={{ margin: 0, fontWeight: 700 }}>{p.partNumber}</p>
-              </div>
               <span className="stock-note">
                 <span className={`stock-dot ${p.availability === "available" ? "" : "out"}`} />
                 {p.availability === "available" ? "Ready to order" : "Currently unavailable"}
@@ -125,9 +108,7 @@ export default async function ProductDetailPage({
                 size="md"
               />
             </div>
-            <p className="field-hint" style={{ marginTop: 10 }}>
-              Delivery is a flat LKR 500. Stock and price are rechecked when you place the order.
-            </p>
+
           </div>
 
           <div style={{ marginTop: 26 }}>

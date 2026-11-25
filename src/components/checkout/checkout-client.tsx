@@ -288,10 +288,10 @@ export function CheckoutClient() {
     <div className="container section">
       <div className="section-heading">
         <div>
-          <p className="eyebrow"><LockKeyhole size={14} aria-hidden="true" /> Secure demo checkout</p>
+          <p className="eyebrow"><LockKeyhole size={14} aria-hidden="true" /> Secure checkout</p>
           <h1 className="section-title">Complete your order</h1>
           <p className="section-copy">
-            Enter contact and delivery details, choose a payment method, and review the final LKR total.
+            Provide your delivery details and select a payment method to confirm your order.
           </p>
         </div>
         <Link className="link-arrow" href="/cart">
@@ -407,7 +407,7 @@ export function CheckoutClient() {
                 ) : (
                   <>
                     <LockKeyhole size={15} aria-hidden="true" />
-                    <span>Place order ({paymentMethod === "simulated_card" ? "Demo Card" : "COD"})</span>
+                    <span>Place order ({paymentMethod === "simulated_card" ? "Card Payment" : "COD"})</span>
                   </>
                 )}
               </Button>
@@ -416,9 +416,6 @@ export function CheckoutClient() {
             {!state.validation ? (
               <p className="field-hint" style={{ marginTop: 12 }}>Checking current stock and prices…</p>
             ) : null}
-            <p className="field-hint" style={{ marginTop: 12 }}>
-              By placing the order, you confirm the delivery details above. No account is required.
-            </p>
           </div>
         </aside>
       </div>

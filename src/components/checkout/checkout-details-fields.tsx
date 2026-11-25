@@ -1,5 +1,4 @@
 import type { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
-import { Sparkles } from "lucide-react";
 import type { CheckoutFormValues } from "@/lib/validation/checkout";
 
 function FieldError({ message }: { message?: string }) {
@@ -10,50 +9,13 @@ function FieldError({ message }: { message?: string }) {
 export function CheckoutDetailsFields({
   register,
   errors,
-  setValue,
 }: {
   register: UseFormRegister<CheckoutFormValues>;
   errors: FieldErrors<CheckoutFormValues>;
   setValue?: UseFormSetValue<CheckoutFormValues>;
 }) {
-  const handleAutoFillDetails = () => {
-    if (!setValue) return;
-    setValue("fullName", "Kavindu Perera", { shouldValidate: true, shouldDirty: true });
-    setValue("phone", "0771234567", { shouldValidate: true, shouldDirty: true });
-    setValue("email", "kavindu.p@example.lk", { shouldValidate: true, shouldDirty: true });
-    setValue("addressLine1", "No. 45/2, Galle Road", { shouldValidate: true, shouldDirty: true });
-    setValue("city", "Colombo", { shouldValidate: true, shouldDirty: true });
-    setValue("postalCode", "00300", { shouldValidate: true, shouldDirty: true });
-    setValue("notes", "Please call before delivery.", { shouldValidate: true, shouldDirty: true });
-  };
-
   return (
     <div>
-      {setValue && (
-        <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: 12 }}>
-          <button
-            type="button"
-            onClick={handleAutoFillDetails}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 6,
-              padding: "4px 10px",
-              fontSize: "0.75rem",
-              fontWeight: 600,
-              borderRadius: 8,
-              background: "#f1f5f9",
-              color: "#334155",
-              border: "1px solid #cbd5e1",
-              cursor: "pointer",
-            }}
-          >
-            <Sparkles size={13} className="text-emerald-600" />
-            <span>Auto-fill Sample Address</span>
-          </button>
-        </div>
-      )}
-
       <div className="form-grid">
         <div className="field field-full">
           <label htmlFor="fullName">Full name</label>
@@ -61,7 +23,7 @@ export function CheckoutDetailsFields({
             id="fullName"
             className="input"
             autoComplete="name"
-            placeholder="e.g. Kavindu Perera"
+            placeholder="Enter your full name"
             aria-invalid={Boolean(errors.fullName)}
             aria-describedby={errors.fullName ? "fullName-error" : undefined}
             {...register("fullName")}
@@ -75,7 +37,7 @@ export function CheckoutDetailsFields({
             className="input"
             type="tel"
             autoComplete="tel"
-            placeholder="0771234567"
+            placeholder="Enter phone number"
             aria-invalid={Boolean(errors.phone)}
             aria-describedby={errors.phone ? "phone-error" : undefined}
             {...register("phone")}
@@ -89,7 +51,7 @@ export function CheckoutDetailsFields({
             className="input"
             type="email"
             autoComplete="email"
-            placeholder="kavindu@example.com"
+            placeholder="example@domain.com"
             aria-invalid={Boolean(errors.email)}
             aria-describedby={errors.email ? "email-error" : undefined}
             {...register("email")}
@@ -125,7 +87,7 @@ export function CheckoutDetailsFields({
             id="city"
             className="input"
             autoComplete="address-level2"
-            placeholder="e.g. Colombo"
+            placeholder="City"
             aria-invalid={Boolean(errors.city)}
             aria-describedby={errors.city ? "city-error" : undefined}
             {...register("city")}
@@ -139,7 +101,7 @@ export function CheckoutDetailsFields({
             className="input"
             inputMode="numeric"
             autoComplete="postal-code"
-            placeholder="00300"
+            placeholder="Postal code"
             aria-invalid={Boolean(errors.postalCode)}
             aria-describedby={errors.postalCode ? "postalCode-error" : undefined}
             {...register("postalCode")}
@@ -151,7 +113,7 @@ export function CheckoutDetailsFields({
           <textarea
             id="notes"
             className="textarea"
-            placeholder="Gate code, landmark, or a preferred call time"
+            placeholder="Special instructions for delivery (optional)"
             {...register("notes")}
           />
         </div>

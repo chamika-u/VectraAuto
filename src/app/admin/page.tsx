@@ -63,7 +63,7 @@ export default function AdminDashboardPage() {
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-stone-900">Store Dashboard</h1>
           <p className="text-sm text-stone-500 mt-1">
-            Real-time sales, order fulfillment, and atomic inventory tracking.
+            Real-time sales, order fulfillment, and inventory tracking.
           </p>
         </div>
 
@@ -135,7 +135,7 @@ export default function AdminDashboardPage() {
           </div>
           <div>
             <h3 className="font-semibold text-sm">Quick Store Maintenance</h3>
-            <p className="text-xs text-emerald-200/80">Manage atomic runtime states and retention.</p>
+            <p className="text-xs text-emerald-200/80">Quick actions for orders and inventory management.</p>
           </div>
         </div>
 
@@ -148,15 +148,9 @@ export default function AdminDashboardPage() {
           </Link>
           <Link
             href="/admin/products"
-            className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
-          >
-            Adjust Stock
-          </Link>
-          <Link
-            href="/admin/settings"
             className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-emerald-500 hover:bg-emerald-400 text-stone-950 font-bold transition-colors"
           >
-            Settings & Reset
+            Adjust Stock
           </Link>
         </div>
       </div>
