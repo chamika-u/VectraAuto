@@ -4,6 +4,7 @@ import { ArrowRight, BadgeCheck, Search, ShieldCheck, Truck } from "lucide-react
 import { FitmentFinder } from "@/components/fitment/fitment-finder";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { getStore } from "@/server/storage/json-store";
+import { HeroBackgroundSlider } from "@/components/home/hero-background-slider";
 
 
 export default async function HomePage() {
@@ -12,41 +13,47 @@ export default async function HomePage() {
 
   return (
     <>
+      <div className="hero-section-wrapper" style={{ position: "relative", width: "100%", overflow: "hidden" }}>
+        <HeroBackgroundSlider />
+        <div className="container" style={{ position: "relative", zIndex: 2 }}>
+          <section className="hero">
+            <Reveal>
+              <p className="eyebrow">
+                <BadgeCheck size={14} aria-hidden="true" />
+                Sri Lanka&apos;s parts showcase
+              </p>
+              <h1 className="hero-title">
+                The right part.
+                <br />
+                <span>First time.</span>
+              </h1>
+              <p className="hero-copy">
+                Browse a curated catalog of automobile parts, confirm fitment for your vehicle,
+                and check out in minutes. Cash on Delivery and a clearly labelled flow
+                are ready for the showcase.
+              </p>
+              <div className="hero-actions">
+                <Link className="button button-primary" href="/products">
+                  Shop all parts
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              </div>
+              <div className="hero-proof">
+                <span><ShieldCheck size={16} aria-hidden="true" /> Fitment first catalog</span>
+                <span><Truck size={16} aria-hidden="true" /> Free delivery</span>
+                <span><Search size={16} aria-hidden="true" /> Instant catalog search</span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.08} className="fitment-anchor">
+              <div id="fitment">
+                <FitmentFinder vehicles={catalog.vehicles} />
+              </div>
+            </Reveal>
+          </section>
+        </div>
+      </div>
+
       <div className="container">
-        <section className="hero">
-          <Reveal>
-            <p className="eyebrow">
-              <BadgeCheck size={14} aria-hidden="true" />
-              Sri Lanka&apos;s parts showcase
-            </p>
-            <h1 className="hero-title">
-              The right part.
-              <br />
-              <span>First time.</span>
-            </h1>
-            <p className="hero-copy">
-              Browse a curated catalog of automobile parts, confirm fitment for your vehicle,
-              and check out in minutes. Cash on Delivery and a clearly labelled flow
-              are ready for the showcase.
-            </p>
-            <div className="hero-actions">
-              <Link className="button button-primary" href="/products">
-                Shop all parts
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="hero-proof">
-              <span><ShieldCheck size={16} aria-hidden="true" /> Fitment first catalog</span>
-              <span><Truck size={16} aria-hidden="true" /> Free delivery</span>
-              <span><Search size={16} aria-hidden="true" /> Instant catalog search</span>
-            </div>
-          </Reveal>
-          <Reveal delay={0.08} className="fitment-anchor">
-            <div id="fitment">
-              <FitmentFinder vehicles={catalog.vehicles} />
-            </div>
-          </Reveal>
-        </section>
 
         <section className="section" aria-labelledby="categories-heading">
           <Reveal>

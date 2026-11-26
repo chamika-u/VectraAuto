@@ -95,6 +95,7 @@ img {
   z-index: 40;
   background: rgba(245, 245, 247, 0.82);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
 
@@ -140,14 +141,47 @@ img {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 22px;
-  color: var(--ink-soft);
-  font-size: 0.92rem;
-  font-weight: 600;
+  gap: 24px;
 }
 
-.nav-links a:not(.button):hover {
+.nav-link-item {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 6px 2px;
+  position: relative;
+  transition: color 180ms ease;
+  white-space: nowrap;
+}
+
+.nav-link-item:hover {
+  color: var(--accent);
+}
+
+.nav-link-active {
   color: var(--ink);
+  font-weight: 700;
+}
+
+.nav-link-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  right: 2px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+@media (max-width: 960px) and (min-width: 761px) {
+  .nav-links {
+    gap: 12px;
+  }
+  .nav-link-item {
+    font-size: 0.8rem;
+  }
 }
 
 .header-actions {
@@ -275,6 +309,10 @@ img {
   padding: 28px;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
 }
 
 .fitment-panel::before {
@@ -1371,6 +1409,10 @@ img {
 @media (max-width: 760px) {
   .container {
     width: min(1180px, 100% - 32px);
+  }
+
+  .hero-slider-overlay-horizontal {
+    background: linear-gradient(180deg, rgba(245, 245, 247, 0.96) 0%, rgba(245, 245, 247, 0.90) 55%, rgba(245, 245, 247, 0.82) 100%) !important;
   }
 
   .nav-links {

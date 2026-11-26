@@ -6,13 +6,21 @@ import { usePathname } from "next/navigation";
 import { CartButton } from "@/components/cart/cart-button";
 import { Store } from "lucide-react";
 
+const NAV_LINKS = [
+  { href: "/about", label: "About Us" },
+  { href: "/products", label: "All Parts" },
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms-conditions", label: "Terms & Conditions" },
+  { href: "/contact", label: "Contact Us" },
+];
+
 export function SiteHeader() {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith("/admin");
 
   if (isAdmin) {
     return (
-      <header className="site-header bg-white/95 border-b border-stone-200">
+      <header className="site-header">
         <div className="container header-inner flex items-center justify-between py-3">
           <div className="flex items-center gap-3">
             <Link href="/" className="brand" aria-label="VectraAuto home">
@@ -56,6 +64,26 @@ export function SiteHeader() {
           />
           <span>VectraAuto</span>
         </Link>
+
+        <nav className="nav-links" aria-label="Main navigation">
+          {NAV_LINKS.map((link) => {
+            const isActive =
+              link.href === "/products"
+                ? pathname?.startsWith("/products")
+                : pathname === link.href;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`nav-link-item ${isActive ? "nav-link-active" : ""}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </nav>
+
         <div className="header-actions flex items-center gap-3">
           <CartButton />
         </div>

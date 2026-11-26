@@ -112,9 +112,6 @@ export function FitmentFinder({
   return (
     <section className="panel fitment-panel" aria-labelledby="fitment-heading">
       <h2 id="fitment-heading" className="panel-title">{title}</h2>
-      <p className="panel-subtitle">
-        Choose a prepared vehicle to see compatible parts across the catalog.
-      </p>
 
       <div className="fitment-grid">
         <div className="field">

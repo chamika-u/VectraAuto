@@ -5,7 +5,6 @@ import { ArrowLeft, Package } from "lucide-react";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { ProductGallery } from "@/components/catalog/product-gallery";
 import { CompatibilityBadge } from "@/components/fitment/compatibility-badge";
-import { FitmentFinder } from "@/components/fitment/fitment-finder";
 import { Reveal } from "@/components/ui/reveal";
 import { formatLkr } from "@/lib/money";
 import { resolveVehicleFromParams } from "@/server/catalog/fitment";
@@ -142,16 +141,6 @@ export default async function ProductDetailPage({
           </div>
         </Reveal>
       </div>
-
-      <section className="section" aria-labelledby="fitment-check-heading">
-        <div className="section-heading">
-          <div>
-            <h2 id="fitment-check-heading" className="section-title">Check another vehicle</h2>
-            <p className="section-copy">Your selection is saved for this browser and updates compatibility across the catalog.</p>
-          </div>
-        </div>
-        <FitmentFinder vehicles={catalog.vehicles} redirectPath="/products" title="Change vehicle" />
-      </section>
     </div>
   );
 }
