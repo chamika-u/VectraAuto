@@ -299,7 +299,6 @@ export function CheckoutClient() {
     <div className="container section">
       <div className="section-heading">
         <div>
-          <p className="eyebrow"><LockKeyhole size={14} aria-hidden="true" /> Secure checkout</p>
           <h1 className="section-title">Complete your order</h1>
           <p className="section-copy">
             Provide your delivery details and select a payment method to confirm your order.

@@ -20,8 +20,8 @@ export function PaymentMethod({
       <label className="payment-option">
         <input type="radio" value="simulated_card" {...register("paymentMethod")} />
         <span>
-          <strong>Simulated card payment</strong>
-          <span>Demo only. Enter test card values to preview a card checkout. No real charge is made.</span>
+          <strong>Credit / Debit Card</strong>
+          <span>Pay securely online with your Visa or MasterCard. 256-bit encrypted checkout.</span>
         </span>
       </label>
       {errors.paymentMethod ? <p className="field-error">{errors.paymentMethod.message}</p> : null}

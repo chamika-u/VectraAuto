@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { AlertTriangle, ArrowRight, LockKeyhole, ShoppingBag, Wrench } from "lucide-react";
+import { AlertTriangle, ArrowRight, LockKeyhole, Wrench } from "lucide-react";
 import { useCart } from "@/components/cart/cart-provider";
 import { CartEmpty } from "@/components/cart/cart-empty";
 import { CartLineItem } from "@/components/cart/cart-line-item";
@@ -53,7 +53,6 @@ export default function CartPage() {
     <div className="container section">
       <div className="section-heading">
         <div>
-          <p className="eyebrow"><ShoppingBag size={14} aria-hidden="true" /> Cart</p>
           <h1 className="section-title">Review your parts</h1>
           <p className="section-copy">
             Quantities, prices, and compatibility are checked again before your order is placed.
@@ -151,10 +150,6 @@ export default function CartPage() {
                 Some items have stock limits. Click above to auto-adjust and proceed to checkout.
               </p>
             ) : null}
-
-            <p className="field-hint" style={{ marginTop: 12 }}>
-              Simulated card details stay in your browser. We never send or store them.
-            </p>
           </div>
         </aside>
       </div>
