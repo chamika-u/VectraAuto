@@ -94,41 +94,6 @@ export function HeroBackgroundSlider() {
             "linear-gradient(180deg, rgba(245, 245, 247, 0.6) 0%, transparent 22%, transparent 78%, rgba(245, 245, 247, 0.95) 100%)",
         }}
       />
-
-      {/* Interactive slide indicator dots */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 24,
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          zIndex: 4,
-          pointerEvents: "auto",
-        }}
-      >
-        {SLIDES.map((slide, index) => (
-          <button
-            key={slide.src}
-            type="button"
-            onClick={() => setCurrentIndex(index)}
-            aria-label={`Slide ${index + 1}: ${slide.caption}`}
-            style={{
-              width: index === currentIndex ? 26 : 7,
-              height: 6,
-              borderRadius: 999,
-              border: "none",
-              padding: 0,
-              background:
-                index === currentIndex ? "var(--accent)" : "rgba(29, 29, 31, 0.25)",
-              cursor: "pointer",
-              transition: "all 350ms cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          />
-        ))}
-      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Search, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, Search, ShieldCheck, Truck } from "lucide-react";
 import { FitmentFinder } from "@/components/fitment/fitment-finder";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/reveal";
 import { getStore } from "@/server/storage/json-store";
@@ -18,10 +18,6 @@ export default async function HomePage() {
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <section className="hero">
             <Reveal>
-              <p className="eyebrow">
-                <BadgeCheck size={14} aria-hidden="true" />
-                Sri Lanka&apos;s parts showcase
-              </p>
               <h1 className="hero-title">
                 The right part.
                 <br />
@@ -58,15 +54,18 @@ export default async function HomePage() {
         <section className="section" aria-labelledby="categories-heading">
           <Reveal>
             <div className="section-heading">
-            <div>
-              <h2 id="categories-heading" className="section-title">Shop by system</h2>
-              <p className="section-copy">
-                Find the exact parts you need by system complete with live stock status and vehicle compatibility checks.
-              </p>
-            </div>
-            <Link className="link-arrow" href="/products">
-              View catalog <ArrowRight size={15} aria-hidden="true" />
-            </Link>
+              <div>
+                <h2 id="categories-heading" className="section-title">
+                  Shop by <span className="highlight-red">system</span>
+                </h2>
+                <p className="section-copy">
+                  Find the exact parts you need by system — complete with live stock status and vehicle compatibility checks.
+                </p>
+              </div>
+              <Link className="link-arrow-pill" href="/products">
+                <span>View catalog</span>
+                <ArrowRight size={15} aria-hidden="true" />
+              </Link>
             </div>
           </Reveal>
           <Stagger className="category-grid">

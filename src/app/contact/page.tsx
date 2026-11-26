@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
-import { SmartContactLink } from "@/components/contact/smart-contact-link";
+import { ArrowLeft, MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Us | VectraAuto Sri Lanka",
@@ -29,38 +28,6 @@ export default function ContactPage() {
           <p className="text-xs text-stone-500 mt-2 font-medium tracking-wide">
             Automotive Help Desk & Inquiries · Colombo, Sri Lanka
           </p>
-        </div>
-
-        {/* Smart One-Click Contact Banner */}
-        <div className="bg-stone-900 text-white rounded-2xl p-6 md:p-8 mb-10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center md:text-left">
-            <span className="text-xs uppercase font-bold tracking-wider text-emerald-400">
-              Instant Assistance
-            </span>
-            <h2 className="text-xl md:text-2xl font-bold">Need Immediate Help with a Part?</h2>
-            <p className="text-sm text-stone-300 max-w-lg">
-              Click the button below: On Mobile, it connects directly to our telephone hotline. On PC, it opens your email client.
-            </p>
-          </div>
-
-          <div className="shrink-0 flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-            <SmartContactLink className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-sm transition-all shadow-md active:scale-95 text-center">
-              <Phone size={16} className="md:hidden" />
-              <Mail size={16} className="hidden md:inline" />
-              <span className="md:hidden">Call Hotline Now</span>
-              <span className="hidden md:inline">Email Customer Support</span>
-            </SmartContactLink>
-
-            <a
-              href="https://wa.me/94757260688"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition-all shadow-md text-center"
-            >
-              <MessageCircle size={16} />
-              <span>WhatsApp</span>
-            </a>
-          </div>
         </div>
 
         {/* Contact Info Cards */}

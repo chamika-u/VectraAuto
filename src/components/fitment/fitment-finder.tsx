@@ -2,7 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Check, RotateCcw } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  Car,
+  ChevronDown,
+  Gauge,
+  RotateCcw,
+  SlidersHorizontal,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Vehicle } from "@/lib/contracts/catalog";
 import { buildVehicleQuery, vehicleToProfile } from "@/server/catalog/fitment";
@@ -85,7 +93,7 @@ export function FitmentFinder({
 
   function handleConfirm() {
     if (!make || !model || !year) {
-      setError("Choose a make, model, and year to continue.");
+      setError("Please choose make, model, and year to continue.");
       return;
     }
     const selected = matching[0];
@@ -110,98 +118,148 @@ export function FitmentFinder({
   }
 
   return (
-    <section className="panel fitment-panel" aria-labelledby="fitment-heading">
-      <h2 id="fitment-heading" className="panel-title">{title}</h2>
+    <section className="fitment-panel" aria-labelledby="fitment-heading">
+      <div className="fitment-top-accent" aria-hidden="true" />
 
-      <div className="fitment-grid">
-        <div className="field">
-          <label htmlFor="fitment-make">Make</label>
-          <select
-            id="fitment-make"
-            className="select"
-            value={make}
-            onChange={(event) => {
-              setMake(event.target.value);
-              setModel("");
-              setYear("");
-              setEngine("");
-              setError(null);
-            }}
-          >
-            <option value="">Select make</option>
-            {makes.map((entry) => (
-              <option key={entry} value={entry}>{entry}</option>
-            ))}
-          </select>
-        </div>
-        <div className="field">
-          <label htmlFor="fitment-model">Model</label>
-          <select
-            id="fitment-model"
-            className="select"
-            value={model}
-            disabled={!make}
-            onChange={(event) => {
-              setModel(event.target.value);
-              setYear("");
-              setEngine("");
-              setError(null);
-            }}
-          >
-            <option value="">Select model</option>
-            {models.map((entry) => (
-              <option key={entry} value={entry}>{entry}</option>
-            ))}
-          </select>
-        </div>
-        <div className="field">
-          <label htmlFor="fitment-year">Year</label>
-          <select
-            id="fitment-year"
-            className="select"
-            value={year}
-            disabled={!model}
-            onChange={(event) => {
-              setYear(event.target.value);
-              setEngine("");
-              setError(null);
-            }}
-          >
-            <option value="">Select year</option>
-            {years.map((entry) => (
-              <option key={entry} value={entry}>{entry}</option>
-            ))}
-          </select>
-        </div>
-        {engines.length > 1 ? (
-          <div className="field">
-            <label htmlFor="fitment-engine">Engine</label>
-            <select
-              id="fitment-engine"
-              className="select"
-              value={engine}
-              onChange={(event) => setEngine(event.target.value)}
-            >
-              <option value="">Any engine</option>
-              {engines.map((entry) => (
-                <option key={entry} value={entry}>{entry}</option>
-              ))}
-            </select>
+      <div className="fitment-header">
+        <h2 id="fitment-heading" className="panel-title">{title}</h2>
+
+        {vehicle ? (
+          <div className="fitment-active-chip">
+            <span className="fitment-pulse-dot" aria-hidden="true" />
+            <span className="truncate">Active: <strong>{vehicle.displayName}</strong></span>
           </div>
         ) : null}
       </div>
 
-      {error ? <p className="field-error" style={{ marginTop: 12 }}>{error}</p> : null}
+      <div className="fitment-grid">
+        {/* Make */}
+        <div className="fitment-field">
+          <label htmlFor="fitment-make" className="fitment-label">
+            <span className="fitment-label-text">Make</span>
+          </label>
+          <div className="fitment-select-wrapper">
+            <Car className="fitment-field-icon" size={17} aria-hidden="true" />
+            <select
+              id="fitment-make"
+              className="fitment-select"
+              value={make}
+              onChange={(event) => {
+                setMake(event.target.value);
+                setModel("");
+                setYear("");
+                setEngine("");
+                setError(null);
+              }}
+            >
+              <option value="">Select vehicle make</option>
+              {makes.map((entry) => (
+                <option key={entry} value={entry}>{entry}</option>
+              ))}
+            </select>
+            <ChevronDown className="fitment-chevron-icon" size={15} aria-hidden="true" />
+          </div>
+        </div>
+
+        {/* Model */}
+        <div className="fitment-field">
+          <label htmlFor="fitment-model" className="fitment-label">
+            <span className="fitment-label-text">Model</span>
+          </label>
+          <div className={`fitment-select-wrapper ${!make ? "is-disabled" : ""}`}>
+            <SlidersHorizontal className="fitment-field-icon" size={16} aria-hidden="true" />
+            <select
+              id="fitment-model"
+              className="fitment-select"
+              value={model}
+              disabled={!make}
+              onChange={(event) => {
+                setModel(event.target.value);
+                setYear("");
+                setEngine("");
+                setError(null);
+              }}
+            >
+              <option value="">{make ? "Select model" : "Choose make first"}</option>
+              {models.map((entry) => (
+                <option key={entry} value={entry}>{entry}</option>
+              ))}
+            </select>
+            <ChevronDown className="fitment-chevron-icon" size={15} aria-hidden="true" />
+          </div>
+        </div>
+
+        {/* Year */}
+        <div className="fitment-field">
+          <label htmlFor="fitment-year" className="fitment-label">
+            <span className="fitment-label-text">Year</span>
+          </label>
+          <div className={`fitment-select-wrapper ${!model ? "is-disabled" : ""}`}>
+            <Calendar className="fitment-field-icon" size={16} aria-hidden="true" />
+            <select
+              id="fitment-year"
+              className="fitment-select"
+              value={year}
+              disabled={!model}
+              onChange={(event) => {
+                setYear(event.target.value);
+                setEngine("");
+                setError(null);
+              }}
+            >
+              <option value="">{model ? "Select year" : "Choose model first"}</option>
+              {years.map((entry) => (
+                <option key={entry} value={entry}>{entry}</option>
+              ))}
+            </select>
+            <ChevronDown className="fitment-chevron-icon" size={15} aria-hidden="true" />
+          </div>
+        </div>
+
+        {/* Engine (if variants exist) */}
+        {engines.length > 1 ? (
+          <div className="fitment-field">
+            <label htmlFor="fitment-engine" className="fitment-label">
+              <span className="fitment-label-text">Engine</span>
+            </label>
+            <div className="fitment-select-wrapper">
+              <Gauge className="fitment-field-icon" size={16} aria-hidden="true" />
+              <select
+                id="fitment-engine"
+                className="fitment-select"
+                value={engine}
+                onChange={(event) => setEngine(event.target.value)}
+              >
+                <option value="">Any engine</option>
+                {engines.map((entry) => (
+                  <option key={entry} value={entry}>{entry}</option>
+                ))}
+              </select>
+              <ChevronDown className="fitment-chevron-icon" size={15} aria-hidden="true" />
+            </div>
+          </div>
+        ) : null}
+      </div>
+
+      {error ? <p className="field-error fitment-error-msg">{error}</p> : null}
 
       <div className="fitment-actions">
-        <Button onClick={handleConfirm} disabled={!make || !model || !year}>
-          <Check size={16} aria-hidden="true" />
-          Show compatible parts
+        <Button
+          onClick={handleConfirm}
+          disabled={!make || !model || !year}
+          className="fitment-confirm-btn"
+        >
+          <span>Show compatible parts</span>
+          <ArrowRight size={16} aria-hidden="true" />
         </Button>
         {make || model || year || vehicle ? (
-          <Button variant="ghost" onClick={handleClear}>
-            <RotateCcw size={15} aria-hidden="true" />
-            Clear vehicle
+          <Button
+            variant="ghost"
+            onClick={handleClear}
+            className="fitment-clear-btn"
+          >
+            <RotateCcw size={14} aria-hidden="true" />
+            <span>Reset</span>
           </Button>
         ) : null}
       </div>
