@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Package } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Package, ShieldCheck, SlidersHorizontal, Tag } from "lucide-react";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { ProductGallery } from "@/components/catalog/product-gallery";
 import { CompatibilityBadge } from "@/components/fitment/compatibility-badge";
-import { FitmentFinder } from "@/components/fitment/fitment-finder";
 import { Reveal } from "@/components/ui/reveal";
 import { formatLkr } from "@/lib/money";
 import { resolveVehicleFromParams } from "@/server/catalog/fitment";
@@ -68,22 +67,29 @@ export default async function ProductDetailPage({
           <ProductGallery images={p.images} productName={p.name} />
         </Reveal>
         <Reveal delay={0.06}>
-          <p className="eyebrow">{p.category.name}</p>
+          <div className="detail-eyebrow">
+            <span className="detail-category-badge">
+              <Tag size={12} aria-hidden="true" />
+              <span>{p.category.name}</span>
+            </span>
+          </div>
+
           <h1 className="detail-title">{p.name}</h1>
-          <p className="detail-copy" style={{ marginTop: 14 }}>{p.shortDescription}</p>
-          <p className="detail-price">{formatLkr(p.priceCents)}</p>
+          <p className="detail-copy" style={{ marginTop: 12 }}>{p.shortDescription}</p>
+
+          <div className="detail-price-box">
+            <p className="detail-price">{formatLkr(p.priceCents)}</p>
+            <span className="detail-vat-badge">All taxes included · Cash on Delivery ready</span>
+          </div>
 
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 16 }}>
             <CompatibilityBadge compatibility={p.compatibility} />
             <span className="badge badge-neutral">
               <Package size={12} aria-hidden="true" />
-              {p.availability === "available"
-                ? `${p.availableQuantity} in stock`
-                : "Out of stock"}
+              {p.availability === "available" ? "In stock" : "Out of stock"}
             </span>
             <span className="badge badge-neutral">SKU {p.sku}</span>
           </div>
-
 
           <div className="buy-box">
             <div className="buy-row">
@@ -108,11 +114,15 @@ export default async function ProductDetailPage({
                 size="md"
               />
             </div>
-
           </div>
 
-          <div style={{ marginTop: 26 }}>
-            <h2 className="panel-title">Details</h2>
+          <div className="detail-section-block">
+            <div className="detail-section-header">
+              <div className="detail-section-icon" aria-hidden="true">
+                <SlidersHorizontal size={16} />
+              </div>
+              <h2 className="detail-section-title">Part Specifications & Details</h2>
+            </div>
             <p className="detail-copy">{p.description}</p>
             <dl className="spec-list">
               {p.specifications.map((specification) => (
@@ -124,34 +134,34 @@ export default async function ProductDetailPage({
             </dl>
           </div>
 
-          <div style={{ marginTop: 26 }}>
-            <h2 className="panel-title">Fitment</h2>
+          <div className="detail-section-block">
+            <div className="detail-section-header">
+              <div className="detail-section-icon" aria-hidden="true">
+                <ShieldCheck size={16} />
+              </div>
+              <h2 className="detail-section-title">Vehicle Fitment & Compatibility</h2>
+            </div>
             <p className="detail-copy">{p.fitmentSummary}</p>
             {p.fitmentApplications.length > 0 ? (
-              <ul style={{ margin: "12px 0 0", paddingLeft: 18, color: "var(--ink-soft)", lineHeight: 1.7 }}>
+              <div className="detail-fitment-list">
                 {p.fitmentApplications.map((application) => (
-                  <li key={application.vehicleId}>
-                    {application.displayName}
-                    {application.notes ? ` — ${application.notes}` : ""}
-                  </li>
+                  <div key={application.vehicleId} className="detail-fitment-item">
+                    <CheckCircle2 size={15} className="detail-fitment-check" aria-hidden="true" />
+                    <div className="detail-fitment-info">
+                      <span className="detail-fitment-name">{application.displayName}</span>
+                      {application.notes ? (
+                        <span className="detail-fitment-notes">— {application.notes}</span>
+                      ) : null}
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             ) : (
               <p className="field-hint">No prepared fitment applications are available for this part.</p>
             )}
           </div>
         </Reveal>
       </div>
-
-      <section className="section" aria-labelledby="fitment-check-heading">
-        <div className="section-heading">
-          <div>
-            <h2 id="fitment-check-heading" className="section-title">Check another vehicle</h2>
-            <p className="section-copy">Your selection is saved for this browser and updates compatibility across the catalog.</p>
-          </div>
-        </div>
-        <FitmentFinder vehicles={catalog.vehicles} redirectPath="/products" title="Change vehicle" />
-      </section>
     </div>
   );
 }

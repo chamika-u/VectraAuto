@@ -43,7 +43,6 @@ export function ProductCard({
         <p className="product-description">{product.shortDescription}</p>
         <div className="product-footer">
           <span className="price">{product.priceFormatted}</span>
-          <span className="field-hint">{product.availableQuantity} available</span>
         </div>
         <AddToCartButton
           product={{

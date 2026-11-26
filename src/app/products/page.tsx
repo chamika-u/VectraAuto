@@ -83,18 +83,23 @@ export default async function ProductsPage({
 
   return (
     <div className="container">
-      <section className="section-tight" style={{ paddingTop: 38 }}>
-        <div className="section-heading" style={{ marginBottom: 10 }}>
-          <div>
-            <h1 className="section-title" style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}>
-              {category ? category.name : "Parts that fit the way you drive."}
-            </h1>
-            <p className="section-copy">
-              {category
-                ? category.description
-                : "Use search, categories, or the fitment finder. Compatibility results update from the prepared vehicle data."}
-            </p>
-          </div>
+      <section className="catalog-hero-banner">
+        <div className="catalog-hero-accent-bar" aria-hidden="true" />
+        <div className="catalog-hero-content">
+          <h1 className="catalog-hero-heading">
+            {category ? (
+              category.name
+            ) : (
+              <>
+                Parts that fit the way you <span className="highlight-red">drive.</span>
+              </>
+            )}
+          </h1>
+          <p className="catalog-hero-subtext">
+            {category
+              ? category.description
+              : "Use search, categories, or the fitment finder. Compatibility results update from the prepared vehicle data."}
+          </p>
         </div>
       </section>
 
