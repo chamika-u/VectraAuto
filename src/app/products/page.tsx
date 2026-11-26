@@ -4,7 +4,6 @@ import { Search } from "lucide-react";
 import { ProductGrid } from "@/components/catalog/product-grid";
 import { EmptyState } from "@/components/catalog/empty-state";
 import { FitmentFinder } from "@/components/fitment/fitment-finder";
-import { Reveal } from "@/components/ui/reveal";
 import { buildVehicleQuery, resolveVehicleFromParams } from "@/server/catalog/fitment";
 import {
   getCategoryBySlug,
@@ -84,71 +83,67 @@ export default async function ProductsPage({
 
   return (
     <div className="container">
-      <Reveal>
-        <section className="catalog-hero-banner">
-          <div className="catalog-hero-accent-bar" aria-hidden="true" />
-          <div className="catalog-hero-content">
-            <h1 className="catalog-hero-heading">
-              {category ? (
-                category.name
-              ) : (
-                <>
-                  Parts that fit the way you <span className="highlight-red">drive.</span>
-                </>
-              )}
-            </h1>
-            <p className="catalog-hero-subtext">
-              {category
-                ? category.description
-                : "Use search, categories, or the fitment finder. Compatibility results update from the prepared vehicle data."}
-            </p>
-          </div>
-        </section>
-      </Reveal>
+      <section className="catalog-hero-banner">
+        <div className="catalog-hero-accent-bar" aria-hidden="true" />
+        <div className="catalog-hero-content">
+          <h1 className="catalog-hero-heading">
+            {category ? (
+              category.name
+            ) : (
+              <>
+                Parts that fit the way you <span className="highlight-red">drive.</span>
+              </>
+            )}
+          </h1>
+          <p className="catalog-hero-subtext">
+            {category
+              ? category.description
+              : "Use search, categories, or the fitment finder. Compatibility results update from the prepared vehicle data."}
+          </p>
+        </div>
+      </section>
 
       <div className="catalog-layout" style={{ paddingBottom: 52 }}>
         <aside>
-          <Reveal delay={0.05}>
-            <div className="panel filter-panel" aria-label="Catalog filters">
-              <h2>Browse</h2>
-              <div className="filter-group">
+          <div className="panel filter-panel" aria-label="Catalog filters">
+            <h2>Browse</h2>
+            <div className="filter-group">
+              <Link
+                className="filter-link"
+                href={categoryHref()}
+                data-active={!categorySlug}
+                scroll={false}
+                prefetch={true}
+              >
+                <span>All parts</span>
+                <span>{catalog.products.filter((product) => product.status === "active").length}</span>
+              </Link>
+              {categories.map((entry) => (
                 <Link
+                  key={entry.id}
                   className="filter-link"
-                  href={categoryHref()}
-                  data-active={!categorySlug}
+                  href={categoryHref(entry.slug)}
+                  data-active={entry.slug === categorySlug}
                   scroll={false}
                   prefetch={true}
                 >
-                  <span>All parts</span>
-                  <span>{catalog.products.filter((product) => product.status === "active").length}</span>
+                  <span>{entry.name}</span>
                 </Link>
-                {categories.map((entry) => (
-                  <Link
-                    key={entry.id}
-                    className="filter-link"
-                    href={categoryHref(entry.slug)}
-                    data-active={entry.slug === categorySlug}
-                    scroll={false}
-                    prefetch={true}
-                  >
-                    <span>{entry.name}</span>
-                  </Link>
-                ))}
-              </div>
-
-              {hasPartialVehicle ? (
-                <div className="alert alert-warning" style={{ marginBottom: 16 }}>
-                  <span>Complete make, model, and year to check fitment.</span>
-                </div>
-              ) : null}
-
-              <FitmentFinder
-                vehicles={catalog.vehicles}
-                redirectPath="/products"
-                title={vehicle ? "Change vehicle" : "Fitment finder"}
-              />
+              ))}
             </div>
-          </Reveal>
+
+            {hasPartialVehicle ? (
+              <div className="alert alert-warning" style={{ marginBottom: 16 }}>
+                <span>Complete make, model, and year to check fitment.</span>
+              </div>
+            ) : null}
+
+            <FitmentFinder
+              vehicles={catalog.vehicles}
+              redirectPath="/products"
+              title={vehicle ? "Change vehicle" : "Fitment finder"}
+            />
+          </div>
         </aside>
 
         <section aria-label="Products">
