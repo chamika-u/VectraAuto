@@ -1,3 +1,6 @@
+"use client";
+
+import { Stagger, StaggerItem } from "@/components/ui/reveal";
 import { ProductCard } from "@/components/catalog/product-card";
 import type { ProductCard as ProductCardData } from "@/lib/contracts/catalog";
 
@@ -9,15 +12,16 @@ export function ProductGrid({
   hrefForProduct?: (product: ProductCardData) => string;
 }) {
   return (
-    <div className="product-grid">
+    <Stagger className="product-grid">
       {products.map((product, index) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          href={hrefForProduct?.(product)}
-          priority={index < 4}
-        />
+        <StaggerItem key={product.id} className="h-full">
+          <ProductCard
+            product={product}
+            href={hrefForProduct?.(product)}
+            priority={index < 4}
+          />
+        </StaggerItem>
       ))}
-    </div>
+    </Stagger>
   );
 }
