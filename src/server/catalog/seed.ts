@@ -79,7 +79,7 @@ export async function loadCatalogSeed(catalogPath = getSettings().catalogPath): 
     const raw = JSON.parse(content) as unknown;
     return validateCatalogSeed(raw);
   } catch {
-    // Fall back to the bundled catalog seed if the disk path is unavailable (e.g. on Vercel)
+    // Fall back to the bundled catalog seed if the disk path is unavailable 
     return validateCatalogSeed(seedFallback);
   }
 }

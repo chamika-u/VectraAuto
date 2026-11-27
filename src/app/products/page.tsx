@@ -116,7 +116,6 @@ export default async function ProductsPage({
                 prefetch={true}
               >
                 <span>All parts</span>
-                <span>{catalog.products.filter((product) => product.status === "active").length}</span>
               </Link>
               {categories.map((entry) => (
                 <Link
@@ -170,9 +169,6 @@ export default async function ProductsPage({
                 Search
               </button>
             </form>
-            <span className="result-count">
-              {products.length} part{products.length === 1 ? "" : "s"}
-            </span>
           </div>
 
           {vehicle ? (
