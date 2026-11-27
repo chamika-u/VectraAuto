@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Shield,
   Lock,
   User,
   Eye,
@@ -12,8 +11,6 @@ import {
   AlertCircle,
   ArrowRight,
   ArrowLeft,
-  KeyRound,
-  CheckCircle2,
 } from "lucide-react";
 import { AdminNav } from "@/components/admin/admin-nav";
 
@@ -73,13 +70,6 @@ export function AdminAuthGuard({ children }: { children: React.ReactNode }) {
     setIsAuthenticated(false);
   };
 
-  const handleFillDemo = () => {
-    setUsername("admin");
-    setPassword("12345");
-    setError(null);
-  };
-
-  
   if (isAuthenticated === null) {
     return (
       <div className="admin-login-backdrop">
@@ -104,10 +94,6 @@ export function AdminAuthGuard({ children }: { children: React.ReactNode }) {
                   height={32}
                   className="h-7 w-auto object-contain"
                 />
-              </div>
-              <div className="admin-login-shield-badge">
-                <Shield size={16} className="text-emerald-500" />
-                <span>Admin Portal</span>
               </div>
             </div>
             <h1 className="admin-login-title">Control Center Sign In</h1>
@@ -184,27 +170,6 @@ export function AdminAuthGuard({ children }: { children: React.ReactNode }) {
               )}
             </button>
           </form>
-
-          {/* Demo helper pill */}
-          <div className="admin-login-hint">
-            <div className="flex items-center justify-between text-xs text-stone-500 mb-1.5">
-              <span className="font-semibold text-stone-700 flex items-center gap-1.5">
-                <KeyRound size={13} className="text-emerald-600" />
-                Demo Credentials:
-              </span>
-              <button
-                type="button"
-                onClick={handleFillDemo}
-                className="text-emerald-600 hover:text-emerald-700 font-bold hover:underline"
-              >
-                Auto-fill
-              </button>
-            </div>
-            <div className="bg-stone-50 border border-stone-200 rounded-lg px-3 py-2 text-xs font-mono text-stone-600 flex justify-between">
-              <span>Username: <strong className="text-stone-900">admin</strong></span>
-              <span>Password: <strong className="text-stone-900">12345</strong></span>
-            </div>
-          </div>
 
           {/* Footer Back Link */}
           <div className="admin-login-footer">
