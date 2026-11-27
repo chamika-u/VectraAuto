@@ -11,6 +11,7 @@ import {
   ArrowLeft,
   Shield,
   Loader2,
+  LogOut,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -40,7 +41,7 @@ const NAV_ITEMS = [
   },
 ];
 
-export function AdminNav() {
+export function AdminNav({ onLogout }: { onLogout?: () => void } = {}) {
   const pathname = usePathname();
   const router = useRouter();
   const [, startTransition] = useTransition();
@@ -114,6 +115,17 @@ export function AdminNav() {
             <span>Store Online</span>
           </div>
         </div>
+
+        {onLogout && (
+          <button
+            type="button"
+            onClick={onLogout}
+            className="admin-logout-btn"
+          >
+            <LogOut className="w-4 h-4 text-stone-400" />
+            <span>Sign Out</span>
+          </button>
+        )}
 
         <Link href="/" prefetch={true} className="admin-return-link">
           <ArrowLeft className="w-4 h-4" />
