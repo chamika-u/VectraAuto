@@ -1,4 +1,4 @@
-import { AdminNav } from "@/components/admin/admin-nav";
+import { AdminAuthGuard } from "@/components/admin/admin-auth-guard";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,11 +13,8 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="admin-shell">
-      <AdminNav />
-      <div className="admin-main">
-        {children}
-      </div>
-    </div>
+    <AdminAuthGuard>
+      {children}
+    </AdminAuthGuard>
   );
 }
